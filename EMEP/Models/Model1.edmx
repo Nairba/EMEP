@@ -1,0 +1,1841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EMEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contraseña" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_USUARIO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Alcohol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activo" Type="int" Nullable="false" />
+          <Property Name="inicio" Type="int" />
+          <Property Name="frecuencia" Type="int" />
+          <Property Name="tipo" Type="nvarchar" MaxLength="50" />
+          <Property Name="cant_tipo" Type="int" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cirugia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="donde" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hora" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_CONSULTA" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_HORARIO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Compartir_Expediente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="ID_PACIENTE_COMPARTE" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_MEDICO" Type="int" Nullable="false" />
+          <Property Name="ID_CONSULTORIO" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_ESPECIALIDAD" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Consultorio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="numero" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Datos_Paciente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="date" Nullable="false" />
+          <Property Name="tipo_sangre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="recidencia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contacto_emergencia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="parentesco" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enfermedad_Expediente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EFERMEDAD" Type="int" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enfermedad_Familiar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="parentesco" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_ENFERMEDAD" Type="int" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expediente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Expediente_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+          <Property Name="ID_ALERGIA" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fumador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activo" Type="int" Nullable="false" />
+          <Property Name="cant_cigarrillos" Type="int" />
+          <Property Name="tiempo" Type="int" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Horario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hora" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="am_pm" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Lista_Actividad_Fisica">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activo" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="minutos" Type="int" />
+          <Property Name="cant_veces" Type="int" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Lista_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="reaccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_EXPEDIENTE" Type="int" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Lista_Enfermedad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_CATEGORIA" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Medico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="s_Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasenna" Type="nvarchar" MaxLength="50" />
+          <Property Name="sexo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_USUARIO" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Otra_Actividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="activo" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="minutos" Type="int" />
+          <Property Name="cant_veces" Type="int" />
+          <Property Name="ID_EXPEDIENTE" Type="int" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Otra_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" />
+          <Property Name="reaccion" Type="nvarchar" MaxLength="50" />
+          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_EXPEDIENTE" Type="int" />
+          <Property Name="ID_CATEGORIA" Type="int" />
+        </EntityType>
+        <EntityType Name="Otra_Enfermedad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripciom" Type="nvarchar" MaxLength="50" />
+          <Property Name="categoria" Type="nvarchar" MaxLength="50" />
+          <Property Name="estado" Type="int" />
+          <Property Name="img" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_EXPEDIENTE" Type="int" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="correo" />
+          </Key>
+          <Property Name="correo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="p_Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="s_Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasenna" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sexo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_USUARIO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Paciente_Paciente_Asociado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="ID_PACIENTE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_PACIENTE_ASOCIADO" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo_Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Administrador_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alcohol_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alcohol">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cirugia_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Cirugia" Type="Self.Cirugia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cirugia">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Consulta">
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="ID_CONSULTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Horario">
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="ID_HORARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compartir_Expediente_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Compartir_Expediente" Type="Self.Compartir_Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="correo" />
+            </Principal>
+            <Dependent Role="Compartir_Expediente">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulta_Consultorio">
+          <End Role="Consultorio" Type="Self.Consultorio" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultorio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_CONSULTORIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulta_Especialidad">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_ESPECIALIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulta_Medico">
+          <End Role="Medico" Type="Self.Medico" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_MEDICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Expediente_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Enfermedad_Expediente" Type="Self.Enfermedad_Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Expediente">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Expediente_Lista_Enfermedad">
+          <End Role="Lista_Enfermedad" Type="Self.Lista_Enfermedad" Multiplicity="1" />
+          <End Role="Enfermedad_Expediente" Type="Self.Enfermedad_Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lista_Enfermedad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Expediente">
+              <PropertyRef Name="ID_EFERMEDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Familiar_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Enfermedad_Familiar" Type="Self.Enfermedad_Familiar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Familiar">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Familiar_Lista_Enfermedad">
+          <End Role="Lista_Enfermedad" Type="Self.Lista_Enfermedad" Multiplicity="0..1" />
+          <End Role="Enfermedad_Familiar" Type="Self.Enfermedad_Familiar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lista_Enfermedad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Familiar">
+              <PropertyRef Name="ID_ENFERMEDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Alergia_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Expediente_Alergia" Type="Self.Expediente_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Expediente_Alergia">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Alergia_Lista_Alergia">
+          <End Role="Lista_Alergia" Type="Self.Lista_Alergia" Multiplicity="1" />
+          <End Role="Expediente_Alergia" Type="Self.Expediente_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lista_Alergia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Expediente_Alergia">
+              <PropertyRef Name="ID_ALERGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="correo" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fumador_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Fumador" Type="Self.Fumador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Fumador">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lista_Actividad_Fisica_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Lista_Actividad_Fisica" Type="Self.Lista_Actividad_Fisica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lista_Actividad_Fisica">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lista_Alergia_Categoria_Alergia">
+          <End Role="Categoria_Alergia" Type="Self.Categoria_Alergia" Multiplicity="1" />
+          <End Role="Lista_Alergia" Type="Self.Lista_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_Alergia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lista_Alergia">
+              <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lista_Enfermedad_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Lista_Enfermedad" Type="Self.Lista_Enfermedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lista_Enfermedad">
+              <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicamento_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Medicamento">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Paciente_Asociado_Datos_Paciente">
+          <End Role="Datos_Paciente" Type="Self.Datos_Paciente" Multiplicity="1" />
+          <End Role="Paciente_Paciente_Asociado" Type="Self.Paciente_Paciente_Asociado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Datos_Paciente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Paciente_Paciente_Asociado">
+              <PropertyRef Name="ID_PACIENTE_ASOCIADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Paciente_Asociado_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Paciente_Paciente_Asociado" Type="Self.Paciente_Paciente_Asociado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="correo" />
+            </Principal>
+            <Dependent Role="Paciente_Paciente_Asociado">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Medico">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMEPModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Alcohol" EntityType="Self.Alcohol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria_Alergia" EntityType="Self.Categoria_Alergia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cirugia" EntityType="Self.Cirugia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compartir_Expediente" EntityType="Self.Compartir_Expediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consultorio" EntityType="Self.Consultorio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Datos_Paciente" EntityType="Self.Datos_Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enfermedad_Expediente" EntityType="Self.Enfermedad_Expediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enfermedad_Familiar" EntityType="Self.Enfermedad_Familiar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expediente" EntityType="Self.Expediente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expediente_Alergia" EntityType="Self.Expediente_Alergia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fumador" EntityType="Self.Fumador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Horario" EntityType="Self.Horario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lista_Actividad_Fisica" EntityType="Self.Lista_Actividad_Fisica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lista_Alergia" EntityType="Self.Lista_Alergia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lista_Enfermedad" EntityType="Self.Lista_Enfermedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medico" EntityType="Self.Medico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Otra_Actividad" EntityType="Self.Otra_Actividad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Otra_Alergia" EntityType="Self.Otra_Alergia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Otra_Enfermedad" EntityType="Self.Otra_Enfermedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente_Paciente_Asociado" EntityType="Self.Paciente_Paciente_Asociado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo_Usuario" EntityType="Self.Tipo_Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Administrador_Tipo_Usuario" Association="Self.FK_Administrador_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alcohol_Expediente" Association="Self.FK_Alcohol_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Alcohol" EntitySet="Alcohol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cirugia_Expediente" Association="Self.FK_Cirugia_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Cirugia" EntitySet="Cirugia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Consulta" Association="Self.FK_Cita_Consulta">
+            <End Role="Consulta" EntitySet="Consulta" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Horario" Association="Self.FK_Cita_Horario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compartir_Expediente_Paciente" Association="Self.FK_Compartir_Expediente_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Compartir_Expediente" EntitySet="Compartir_Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulta_Consultorio" Association="Self.FK_Consulta_Consultorio">
+            <End Role="Consultorio" EntitySet="Consultorio" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulta_Especialidad" Association="Self.FK_Consulta_Especialidad">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulta_Medico" Association="Self.FK_Consulta_Medico">
+            <End Role="Medico" EntitySet="Medico" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Expediente_Expediente" Association="Self.FK_Enfermedad_Expediente_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Enfermedad_Expediente" EntitySet="Enfermedad_Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Expediente_Lista_Enfermedad" Association="Self.FK_Enfermedad_Expediente_Lista_Enfermedad">
+            <End Role="Lista_Enfermedad" EntitySet="Lista_Enfermedad" />
+            <End Role="Enfermedad_Expediente" EntitySet="Enfermedad_Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Familiar_Expediente" Association="Self.FK_Enfermedad_Familiar_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Enfermedad_Familiar" EntitySet="Enfermedad_Familiar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Familiar_Lista_Enfermedad" Association="Self.FK_Enfermedad_Familiar_Lista_Enfermedad">
+            <End Role="Lista_Enfermedad" EntitySet="Lista_Enfermedad" />
+            <End Role="Enfermedad_Familiar" EntitySet="Enfermedad_Familiar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Alergia_Expediente" Association="Self.FK_Expediente_Alergia_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Expediente_Alergia" EntitySet="Expediente_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Alergia_Lista_Alergia" Association="Self.FK_Expediente_Alergia_Lista_Alergia">
+            <End Role="Lista_Alergia" EntitySet="Lista_Alergia" />
+            <End Role="Expediente_Alergia" EntitySet="Expediente_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Paciente" Association="Self.FK_Expediente_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fumador_Expediente" Association="Self.FK_Fumador_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Fumador" EntitySet="Fumador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lista_Actividad_Fisica_Expediente" Association="Self.FK_Lista_Actividad_Fisica_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Lista_Actividad_Fisica" EntitySet="Lista_Actividad_Fisica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lista_Alergia_Categoria_Alergia" Association="Self.FK_Lista_Alergia_Categoria_Alergia">
+            <End Role="Categoria_Alergia" EntitySet="Categoria_Alergia" />
+            <End Role="Lista_Alergia" EntitySet="Lista_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lista_Enfermedad_Categoria" Association="Self.FK_Lista_Enfermedad_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Lista_Enfermedad" EntitySet="Lista_Enfermedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicamento_Expediente" Association="Self.FK_Medicamento_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Medicamento" EntitySet="Medicamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Paciente_Asociado_Datos_Paciente" Association="Self.FK_Paciente_Paciente_Asociado_Datos_Paciente">
+            <End Role="Datos_Paciente" EntitySet="Datos_Paciente" />
+            <End Role="Paciente_Paciente_Asociado" EntitySet="Paciente_Paciente_Asociado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Paciente_Asociado_Paciente" Association="Self.FK_Paciente_Paciente_Asociado_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Paciente_Paciente_Asociado" EntitySet="Paciente_Paciente_Asociado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Tipo_Usuario" Association="Self.FK_Paciente_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Tipo_Usuario" Association="Self.FK_Usuario_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Medico" EntitySet="Medico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EMEPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="ID_TIPO_USUARIO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tipo_Usuario" Relationship="Self.FK_Administrador_Tipo_Usuario" FromRole="Administrador" ToRole="Tipo_Usuario" />
+        </EntityType>
+        <EntityType Name="Alcohol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activo" Type="Int32" Nullable="false" />
+          <Property Name="inicio" Type="Int32" />
+          <Property Name="frecuencia" Type="Int32" />
+          <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cant_tipo" Type="Int32" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Alcohol_Expediente" FromRole="Alcohol" ToRole="Expediente" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lista_Enfermedad" Relationship="Self.FK_Lista_Enfermedad_Categoria" FromRole="Categoria" ToRole="Lista_Enfermedad" />
+        </EntityType>
+        <EntityType Name="Categoria_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lista_Alergia" Relationship="Self.FK_Lista_Alergia_Categoria_Alergia" FromRole="Categoria_Alergia" ToRole="Lista_Alergia" />
+        </EntityType>
+        <EntityType Name="Cirugia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="donde" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Cirugia_Expediente" FromRole="Cirugia" ToRole="Expediente" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_PACIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_CONSULTA" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_HORARIO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Consulta" Relationship="Self.FK_Cita_Consulta" FromRole="Cita" ToRole="Consulta" />
+          <NavigationProperty Name="Horario" Relationship="Self.FK_Cita_Horario" FromRole="Cita" ToRole="Horario" />
+        </EntityType>
+        <EntityType Name="Compartir_Expediente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="ID_PACIENTE_COMPARTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Compartir_Expediente_Paciente" FromRole="Compartir_Expediente" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Consulta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_MEDICO" Type="Int32" Nullable="false" />
+          <Property Name="ID_CONSULTORIO" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ID_ESPECIALIDAD" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Consulta" FromRole="Consulta" ToRole="Cita" />
+          <NavigationProperty Name="Consultorio" Relationship="Self.FK_Consulta_Consultorio" FromRole="Consulta" ToRole="Consultorio" />
+          <NavigationProperty Name="Especialidad" Relationship="Self.FK_Consulta_Especialidad" FromRole="Consulta" ToRole="Especialidad" />
+          <NavigationProperty Name="Medico" Relationship="Self.FK_Consulta_Medico" FromRole="Consulta" ToRole="Medico" />
+        </EntityType>
+        <EntityType Name="Consultorio">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="numero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Consulta" Relationship="Self.FK_Consulta_Consultorio" FromRole="Consultorio" ToRole="Consulta" />
+        </EntityType>
+        <EntityType Name="Datos_Paciente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="tipo_sangre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="recidencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contacto_emergencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="parentesco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Paciente_Paciente_Asociado" Relationship="Self.FK_Paciente_Paciente_Asociado_Datos_Paciente" FromRole="Datos_Paciente" ToRole="Paciente_Paciente_Asociado" />
+        </EntityType>
+        <EntityType Name="Enfermedad_Expediente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EFERMEDAD" Type="Int32" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Enfermedad_Expediente_Expediente" FromRole="Enfermedad_Expediente" ToRole="Expediente" />
+          <NavigationProperty Name="Lista_Enfermedad" Relationship="Self.FK_Enfermedad_Expediente_Lista_Enfermedad" FromRole="Enfermedad_Expediente" ToRole="Lista_Enfermedad" />
+        </EntityType>
+        <EntityType Name="Enfermedad_Familiar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="parentesco" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <Property Name="ID_ENFERMEDAD" Type="Int32" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Enfermedad_Familiar_Expediente" FromRole="Enfermedad_Familiar" ToRole="Expediente" />
+          <NavigationProperty Name="Lista_Enfermedad" Relationship="Self.FK_Enfermedad_Familiar_Lista_Enfermedad" FromRole="Enfermedad_Familiar" ToRole="Lista_Enfermedad" />
+        </EntityType>
+        <EntityType Name="Especialidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Consulta" Relationship="Self.FK_Consulta_Especialidad" FromRole="Especialidad" ToRole="Consulta" />
+        </EntityType>
+        <EntityType Name="Expediente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Alcohol" Relationship="Self.FK_Alcohol_Expediente" FromRole="Expediente" ToRole="Alcohol" />
+          <NavigationProperty Name="Cirugia" Relationship="Self.FK_Cirugia_Expediente" FromRole="Expediente" ToRole="Cirugia" />
+          <NavigationProperty Name="Enfermedad_Expediente" Relationship="Self.FK_Enfermedad_Expediente_Expediente" FromRole="Expediente" ToRole="Enfermedad_Expediente" />
+          <NavigationProperty Name="Enfermedad_Familiar" Relationship="Self.FK_Enfermedad_Familiar_Expediente" FromRole="Expediente" ToRole="Enfermedad_Familiar" />
+          <NavigationProperty Name="Expediente_Alergia" Relationship="Self.FK_Expediente_Alergia_Expediente" FromRole="Expediente" ToRole="Expediente_Alergia" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Expediente_Paciente" FromRole="Expediente" ToRole="Paciente" />
+          <NavigationProperty Name="Fumador" Relationship="Self.FK_Fumador_Expediente" FromRole="Expediente" ToRole="Fumador" />
+          <NavigationProperty Name="Lista_Actividad_Fisica" Relationship="Self.FK_Lista_Actividad_Fisica_Expediente" FromRole="Expediente" ToRole="Lista_Actividad_Fisica" />
+          <NavigationProperty Name="Medicamento" Relationship="Self.FK_Medicamento_Expediente" FromRole="Expediente" ToRole="Medicamento" />
+        </EntityType>
+        <EntityType Name="Expediente_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <Property Name="ID_ALERGIA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Expediente_Alergia_Expediente" FromRole="Expediente_Alergia" ToRole="Expediente" />
+          <NavigationProperty Name="Lista_Alergia" Relationship="Self.FK_Expediente_Alergia_Lista_Alergia" FromRole="Expediente_Alergia" ToRole="Lista_Alergia" />
+        </EntityType>
+        <EntityType Name="Fumador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activo" Type="Int32" Nullable="false" />
+          <Property Name="cant_cigarrillos" Type="Int32" />
+          <Property Name="tiempo" Type="Int32" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Fumador_Expediente" FromRole="Fumador" ToRole="Expediente" />
+        </EntityType>
+        <EntityType Name="Horario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="am_pm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Horario" FromRole="Horario" ToRole="Cita" />
+        </EntityType>
+        <EntityType Name="Lista_Actividad_Fisica">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activo" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="minutos" Type="Int32" />
+          <Property Name="cant_veces" Type="Int32" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Lista_Actividad_Fisica_Expediente" FromRole="Lista_Actividad_Fisica" ToRole="Expediente" />
+        </EntityType>
+        <EntityType Name="Lista_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="reaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categoria_Alergia" Relationship="Self.FK_Lista_Alergia_Categoria_Alergia" FromRole="Lista_Alergia" ToRole="Categoria_Alergia" />
+          <NavigationProperty Name="Expediente_Alergia" Relationship="Self.FK_Expediente_Alergia_Lista_Alergia" FromRole="Lista_Alergia" ToRole="Expediente_Alergia" />
+        </EntityType>
+        <EntityType Name="Lista_Enfermedad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_Lista_Enfermedad_Categoria" FromRole="Lista_Enfermedad" ToRole="Categoria" />
+          <NavigationProperty Name="Enfermedad_Expediente" Relationship="Self.FK_Enfermedad_Expediente_Lista_Enfermedad" FromRole="Lista_Enfermedad" ToRole="Enfermedad_Expediente" />
+          <NavigationProperty Name="Enfermedad_Familiar" Relationship="Self.FK_Enfermedad_Familiar_Lista_Enfermedad" FromRole="Lista_Enfermedad" ToRole="Enfermedad_Familiar" />
+        </EntityType>
+        <EntityType Name="Medicamento">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Medicamento_Expediente" FromRole="Medicamento" ToRole="Expediente" />
+        </EntityType>
+        <EntityType Name="Medico">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="s_Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contrasenna" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="ID_TIPO_USUARIO" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Consulta" Relationship="Self.FK_Consulta_Medico" FromRole="Medico" ToRole="Consulta" />
+          <NavigationProperty Name="Tipo_Usuario" Relationship="Self.FK_Usuario_Tipo_Usuario" FromRole="Medico" ToRole="Tipo_Usuario" />
+        </EntityType>
+        <EntityType Name="Otra_Actividad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="activo" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="minutos" Type="Int32" />
+          <Property Name="cant_veces" Type="Int32" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Otra_Alergia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="reaccion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" />
+          <Property Name="ID_CATEGORIA" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Otra_Enfermedad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripciom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_EXPEDIENTE" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="correo" />
+          </Key>
+          <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="p_Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="s_Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contrasenna" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="ID_TIPO_USUARIO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Compartir_Expediente" Relationship="Self.FK_Compartir_Expediente_Paciente" FromRole="Paciente" ToRole="Compartir_Expediente" />
+          <NavigationProperty Name="Expediente" Relationship="Self.FK_Expediente_Paciente" FromRole="Paciente" ToRole="Expediente" />
+          <NavigationProperty Name="Paciente_Paciente_Asociado" Relationship="Self.FK_Paciente_Paciente_Asociado_Paciente" FromRole="Paciente" ToRole="Paciente_Paciente_Asociado" />
+          <NavigationProperty Name="Tipo_Usuario" Relationship="Self.FK_Paciente_Tipo_Usuario" FromRole="Paciente" ToRole="Tipo_Usuario" />
+        </EntityType>
+        <EntityType Name="Paciente_Paciente_Asociado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="ID_PACIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_PACIENTE_ASOCIADO" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Datos_Paciente" Relationship="Self.FK_Paciente_Paciente_Asociado_Datos_Paciente" FromRole="Paciente_Paciente_Asociado" ToRole="Datos_Paciente" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Paciente_Paciente_Asociado_Paciente" FromRole="Paciente_Paciente_Asociado" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Tipo_Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_Tipo_Usuario" FromRole="Tipo_Usuario" ToRole="Administrador" />
+          <NavigationProperty Name="Medico" Relationship="Self.FK_Usuario_Tipo_Usuario" FromRole="Tipo_Usuario" ToRole="Medico" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Paciente_Tipo_Usuario" FromRole="Tipo_Usuario" ToRole="Paciente" />
+        </EntityType>
+        <Association Name="FK_Administrador_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Alcohol_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Alcohol" Type="Self.Alcohol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Alcohol">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lista_Enfermedad_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Lista_Enfermedad" Type="Self.Lista_Enfermedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lista_Enfermedad">
+              <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lista_Alergia_Categoria_Alergia">
+          <End Role="Categoria_Alergia" Type="Self.Categoria_Alergia" Multiplicity="1" />
+          <End Role="Lista_Alergia" Type="Self.Lista_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria_Alergia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lista_Alergia">
+              <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cirugia_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Cirugia" Type="Self.Cirugia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cirugia">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Consulta">
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="ID_CONSULTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Horario">
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="ID_HORARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compartir_Expediente_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Compartir_Expediente" Type="Self.Compartir_Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="correo" />
+            </Principal>
+            <Dependent Role="Compartir_Expediente">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulta_Consultorio">
+          <End Role="Consultorio" Type="Self.Consultorio" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultorio">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_CONSULTORIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulta_Especialidad">
+          <End Role="Especialidad" Type="Self.Especialidad" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_ESPECIALIDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consulta_Medico">
+          <End Role="Medico" Type="Self.Medico" Multiplicity="1" />
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medico">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Consulta">
+              <PropertyRef Name="ID_MEDICO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Paciente_Asociado_Datos_Paciente">
+          <End Role="Datos_Paciente" Type="Self.Datos_Paciente" Multiplicity="1" />
+          <End Role="Paciente_Paciente_Asociado" Type="Self.Paciente_Paciente_Asociado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Datos_Paciente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Paciente_Paciente_Asociado">
+              <PropertyRef Name="ID_PACIENTE_ASOCIADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Expediente_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Enfermedad_Expediente" Type="Self.Enfermedad_Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Expediente">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Expediente_Lista_Enfermedad">
+          <End Role="Lista_Enfermedad" Type="Self.Lista_Enfermedad" Multiplicity="1" />
+          <End Role="Enfermedad_Expediente" Type="Self.Enfermedad_Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lista_Enfermedad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Expediente">
+              <PropertyRef Name="ID_EFERMEDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Familiar_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Enfermedad_Familiar" Type="Self.Enfermedad_Familiar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Familiar">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enfermedad_Familiar_Lista_Enfermedad">
+          <End Role="Lista_Enfermedad" Type="Self.Lista_Enfermedad" Multiplicity="0..1" />
+          <End Role="Enfermedad_Familiar" Type="Self.Enfermedad_Familiar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lista_Enfermedad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Enfermedad_Familiar">
+              <PropertyRef Name="ID_ENFERMEDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Alergia_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Expediente_Alergia" Type="Self.Expediente_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Expediente_Alergia">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="correo" />
+            </Principal>
+            <Dependent Role="Expediente">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fumador_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Fumador" Type="Self.Fumador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Fumador">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lista_Actividad_Fisica_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Lista_Actividad_Fisica" Type="Self.Lista_Actividad_Fisica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Lista_Actividad_Fisica">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicamento_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
+          <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Medicamento">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expediente_Alergia_Lista_Alergia">
+          <End Role="Lista_Alergia" Type="Self.Lista_Alergia" Multiplicity="1" />
+          <End Role="Expediente_Alergia" Type="Self.Expediente_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lista_Alergia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Expediente_Alergia">
+              <PropertyRef Name="ID_ALERGIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Medico">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Paciente_Asociado_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Paciente_Paciente_Asociado" Type="Self.Paciente_Paciente_Asociado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="correo" />
+            </Principal>
+            <Dependent Role="Paciente_Paciente_Asociado">
+              <PropertyRef Name="ID_PACIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Tipo_Usuario">
+          <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Usuario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EMEPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" />
+          <EntitySet Name="Alcohol" EntityType="Self.Alcohol" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Categoria_Alergia" EntityType="Self.Categoria_Alergia" />
+          <EntitySet Name="Cirugia" EntityType="Self.Cirugia" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" />
+          <EntitySet Name="Compartir_Expediente" EntityType="Self.Compartir_Expediente" />
+          <EntitySet Name="Consulta" EntityType="Self.Consulta" />
+          <EntitySet Name="Consultorio" EntityType="Self.Consultorio" />
+          <EntitySet Name="Datos_Paciente" EntityType="Self.Datos_Paciente" />
+          <EntitySet Name="Enfermedad_Expediente" EntityType="Self.Enfermedad_Expediente" />
+          <EntitySet Name="Enfermedad_Familiar" EntityType="Self.Enfermedad_Familiar" />
+          <EntitySet Name="Especialidad" EntityType="Self.Especialidad" />
+          <EntitySet Name="Expediente" EntityType="Self.Expediente" />
+          <EntitySet Name="Expediente_Alergia" EntityType="Self.Expediente_Alergia" />
+          <EntitySet Name="Fumador" EntityType="Self.Fumador" />
+          <EntitySet Name="Horario" EntityType="Self.Horario" />
+          <EntitySet Name="Lista_Actividad_Fisica" EntityType="Self.Lista_Actividad_Fisica" />
+          <EntitySet Name="Lista_Alergia" EntityType="Self.Lista_Alergia" />
+          <EntitySet Name="Lista_Enfermedad" EntityType="Self.Lista_Enfermedad" />
+          <EntitySet Name="Medicamento" EntityType="Self.Medicamento" />
+          <EntitySet Name="Medico" EntityType="Self.Medico" />
+          <EntitySet Name="Otra_Actividad" EntityType="Self.Otra_Actividad" />
+          <EntitySet Name="Otra_Alergia" EntityType="Self.Otra_Alergia" />
+          <EntitySet Name="Otra_Enfermedad" EntityType="Self.Otra_Enfermedad" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" />
+          <EntitySet Name="Paciente_Paciente_Asociado" EntityType="Self.Paciente_Paciente_Asociado" />
+          <EntitySet Name="Tipo_Usuario" EntityType="Self.Tipo_Usuario" />
+          <AssociationSet Name="FK_Administrador_Tipo_Usuario" Association="Self.FK_Administrador_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Alcohol_Expediente" Association="Self.FK_Alcohol_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Alcohol" EntitySet="Alcohol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lista_Enfermedad_Categoria" Association="Self.FK_Lista_Enfermedad_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Lista_Enfermedad" EntitySet="Lista_Enfermedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lista_Alergia_Categoria_Alergia" Association="Self.FK_Lista_Alergia_Categoria_Alergia">
+            <End Role="Categoria_Alergia" EntitySet="Categoria_Alergia" />
+            <End Role="Lista_Alergia" EntitySet="Lista_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cirugia_Expediente" Association="Self.FK_Cirugia_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Cirugia" EntitySet="Cirugia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Consulta" Association="Self.FK_Cita_Consulta">
+            <End Role="Consulta" EntitySet="Consulta" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Horario" Association="Self.FK_Cita_Horario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compartir_Expediente_Paciente" Association="Self.FK_Compartir_Expediente_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Compartir_Expediente" EntitySet="Compartir_Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulta_Consultorio" Association="Self.FK_Consulta_Consultorio">
+            <End Role="Consultorio" EntitySet="Consultorio" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulta_Especialidad" Association="Self.FK_Consulta_Especialidad">
+            <End Role="Especialidad" EntitySet="Especialidad" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consulta_Medico" Association="Self.FK_Consulta_Medico">
+            <End Role="Medico" EntitySet="Medico" />
+            <End Role="Consulta" EntitySet="Consulta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Paciente_Asociado_Datos_Paciente" Association="Self.FK_Paciente_Paciente_Asociado_Datos_Paciente">
+            <End Role="Datos_Paciente" EntitySet="Datos_Paciente" />
+            <End Role="Paciente_Paciente_Asociado" EntitySet="Paciente_Paciente_Asociado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Expediente_Expediente" Association="Self.FK_Enfermedad_Expediente_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Enfermedad_Expediente" EntitySet="Enfermedad_Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Expediente_Lista_Enfermedad" Association="Self.FK_Enfermedad_Expediente_Lista_Enfermedad">
+            <End Role="Lista_Enfermedad" EntitySet="Lista_Enfermedad" />
+            <End Role="Enfermedad_Expediente" EntitySet="Enfermedad_Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Familiar_Expediente" Association="Self.FK_Enfermedad_Familiar_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Enfermedad_Familiar" EntitySet="Enfermedad_Familiar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enfermedad_Familiar_Lista_Enfermedad" Association="Self.FK_Enfermedad_Familiar_Lista_Enfermedad">
+            <End Role="Lista_Enfermedad" EntitySet="Lista_Enfermedad" />
+            <End Role="Enfermedad_Familiar" EntitySet="Enfermedad_Familiar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Alergia_Expediente" Association="Self.FK_Expediente_Alergia_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Expediente_Alergia" EntitySet="Expediente_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Paciente" Association="Self.FK_Expediente_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Expediente" EntitySet="Expediente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fumador_Expediente" Association="Self.FK_Fumador_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Fumador" EntitySet="Fumador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lista_Actividad_Fisica_Expediente" Association="Self.FK_Lista_Actividad_Fisica_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Lista_Actividad_Fisica" EntitySet="Lista_Actividad_Fisica" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicamento_Expediente" Association="Self.FK_Medicamento_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Medicamento" EntitySet="Medicamento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expediente_Alergia_Lista_Alergia" Association="Self.FK_Expediente_Alergia_Lista_Alergia">
+            <End Role="Lista_Alergia" EntitySet="Lista_Alergia" />
+            <End Role="Expediente_Alergia" EntitySet="Expediente_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Tipo_Usuario" Association="Self.FK_Usuario_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Medico" EntitySet="Medico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Paciente_Asociado_Paciente" Association="Self.FK_Paciente_Paciente_Asociado_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Paciente_Paciente_Asociado" EntitySet="Paciente_Paciente_Asociado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Tipo_Usuario" Association="Self.FK_Paciente_Tipo_Usuario">
+            <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EMEPModelStoreContainer" CdmEntityContainer="EMEPEntities">
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="EMEPModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ID_TIPO_USUARIO" ColumnName="ID_TIPO_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alcohol">
+            <EntityTypeMapping TypeName="EMEPModel.Alcohol">
+              <MappingFragment StoreEntitySet="Alcohol">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="frecuencia" ColumnName="frecuencia" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="cant_tipo" ColumnName="cant_tipo" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="EMEPModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria_Alergia">
+            <EntityTypeMapping TypeName="EMEPModel.Categoria_Alergia">
+              <MappingFragment StoreEntitySet="Categoria_Alergia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cirugia">
+            <EntityTypeMapping TypeName="EMEPModel.Cirugia">
+              <MappingFragment StoreEntitySet="Cirugia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="donde" ColumnName="donde" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cita">
+            <EntityTypeMapping TypeName="EMEPModel.Cita">
+              <MappingFragment StoreEntitySet="Cita">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ID_CONSULTA" ColumnName="ID_CONSULTA" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="ID_HORARIO" ColumnName="ID_HORARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compartir_Expediente">
+            <EntityTypeMapping TypeName="EMEPModel.Compartir_Expediente">
+              <MappingFragment StoreEntitySet="Compartir_Expediente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ID_PACIENTE_COMPARTE" ColumnName="ID_PACIENTE_COMPARTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consulta">
+            <EntityTypeMapping TypeName="EMEPModel.Consulta">
+              <MappingFragment StoreEntitySet="Consulta">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ID_MEDICO" ColumnName="ID_MEDICO" />
+                <ScalarProperty Name="ID_CONSULTORIO" ColumnName="ID_CONSULTORIO" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="ID_ESPECIALIDAD" ColumnName="ID_ESPECIALIDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consultorio">
+            <EntityTypeMapping TypeName="EMEPModel.Consultorio">
+              <MappingFragment StoreEntitySet="Consultorio">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Datos_Paciente">
+            <EntityTypeMapping TypeName="EMEPModel.Datos_Paciente">
+              <MappingFragment StoreEntitySet="Datos_Paciente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="tipo_sangre" ColumnName="tipo_sangre" />
+                <ScalarProperty Name="recidencia" ColumnName="recidencia" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="contacto_emergencia" ColumnName="contacto_emergencia" />
+                <ScalarProperty Name="parentesco" ColumnName="parentesco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enfermedad_Expediente">
+            <EntityTypeMapping TypeName="EMEPModel.Enfermedad_Expediente">
+              <MappingFragment StoreEntitySet="Enfermedad_Expediente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ID_EFERMEDAD" ColumnName="ID_EFERMEDAD" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enfermedad_Familiar">
+            <EntityTypeMapping TypeName="EMEPModel.Enfermedad_Familiar">
+              <MappingFragment StoreEntitySet="Enfermedad_Familiar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="parentesco" ColumnName="parentesco" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="ID_ENFERMEDAD" ColumnName="ID_ENFERMEDAD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialidad">
+            <EntityTypeMapping TypeName="EMEPModel.Especialidad">
+              <MappingFragment StoreEntitySet="Especialidad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expediente">
+            <EntityTypeMapping TypeName="EMEPModel.Expediente">
+              <MappingFragment StoreEntitySet="Expediente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expediente_Alergia">
+            <EntityTypeMapping TypeName="EMEPModel.Expediente_Alergia">
+              <MappingFragment StoreEntitySet="Expediente_Alergia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="ID_ALERGIA" ColumnName="ID_ALERGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fumador">
+            <EntityTypeMapping TypeName="EMEPModel.Fumador">
+              <MappingFragment StoreEntitySet="Fumador">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="cant_cigarrillos" ColumnName="cant_cigarrillos" />
+                <ScalarProperty Name="tiempo" ColumnName="tiempo" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Horario">
+            <EntityTypeMapping TypeName="EMEPModel.Horario">
+              <MappingFragment StoreEntitySet="Horario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="am_pm" ColumnName="am_pm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lista_Actividad_Fisica">
+            <EntityTypeMapping TypeName="EMEPModel.Lista_Actividad_Fisica">
+              <MappingFragment StoreEntitySet="Lista_Actividad_Fisica">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="minutos" ColumnName="minutos" />
+                <ScalarProperty Name="cant_veces" ColumnName="cant_veces" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lista_Alergia">
+            <EntityTypeMapping TypeName="EMEPModel.Lista_Alergia">
+              <MappingFragment StoreEntitySet="Lista_Alergia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="reaccion" ColumnName="reaccion" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lista_Enfermedad">
+            <EntityTypeMapping TypeName="EMEPModel.Lista_Enfermedad">
+              <MappingFragment StoreEntitySet="Lista_Enfermedad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicamento">
+            <EntityTypeMapping TypeName="EMEPModel.Medicamento">
+              <MappingFragment StoreEntitySet="Medicamento">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medico">
+            <EntityTypeMapping TypeName="EMEPModel.Medico">
+              <MappingFragment StoreEntitySet="Medico">
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="p_Apellido" ColumnName="p_Apellido" />
+                <ScalarProperty Name="s_Apellido" ColumnName="s_Apellido" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ID_TIPO_USUARIO" ColumnName="ID_TIPO_USUARIO" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Otra_Actividad">
+            <EntityTypeMapping TypeName="EMEPModel.Otra_Actividad">
+              <MappingFragment StoreEntitySet="Otra_Actividad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="minutos" ColumnName="minutos" />
+                <ScalarProperty Name="cant_veces" ColumnName="cant_veces" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="img" ColumnName="img" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Otra_Alergia">
+            <EntityTypeMapping TypeName="EMEPModel.Otra_Alergia">
+              <MappingFragment StoreEntitySet="Otra_Alergia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="reaccion" ColumnName="reaccion" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Otra_Enfermedad">
+            <EntityTypeMapping TypeName="EMEPModel.Otra_Enfermedad">
+              <MappingFragment StoreEntitySet="Otra_Enfermedad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripciom" ColumnName="descripciom" />
+                <ScalarProperty Name="categoria" ColumnName="categoria" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente">
+            <EntityTypeMapping TypeName="EMEPModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="p_Apellido" ColumnName="p_Apellido" />
+                <ScalarProperty Name="s_Apellido" ColumnName="s_Apellido" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ID_TIPO_USUARIO" ColumnName="ID_TIPO_USUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paciente_Paciente_Asociado">
+            <EntityTypeMapping TypeName="EMEPModel.Paciente_Paciente_Asociado">
+              <MappingFragment StoreEntitySet="Paciente_Paciente_Asociado">
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+                <ScalarProperty Name="ID_PACIENTE_ASOCIADO" ColumnName="ID_PACIENTE_ASOCIADO" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Usuario">
+            <EntityTypeMapping TypeName="EMEPModel.Tipo_Usuario">
+              <MappingFragment StoreEntitySet="Tipo_Usuario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

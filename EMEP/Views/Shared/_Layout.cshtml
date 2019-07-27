@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - EMEP</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+    @*MENU*@
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        @Html.ActionLink("EMEP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="# navbarColor01" aria-controls="navbarColor01" aria-expand="false" aria-label="Navegación de palanca ">
+            <span class="navbar-toggler-icon"> </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+
+                    @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+
+                    @Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "nav-link" })
+                    @*<a class="nav-link" href="#"> <font style="vertical-align: inherit;"> <font style="vertical-align: inherit;"> Tour </font> </font> </a>*@
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                @*<li class="nav-item">
+                    @Html.ActionLink("Inicio Sesion", "InicioSesion", "Administrador", new { area = "" }, new { @class = "nav-link" })
+                </li>
+                @Html.ActionLink("Inicio Sesion", "InicioSesion", "Administrador", new { area = "" }, new { @class = "nav-link"})*@
+
+            </ul>
+            <div style="float:left">
+                @*@Html.ActionLink("Inicio Sesion", "InicioSesion", "Administrador", new { area = "" }, new { @class = "nav-link" })*@
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    @*MENU*@
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Derechos Reservados - EMEP</p>
+        </footer>
+    </div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
