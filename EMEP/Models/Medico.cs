@@ -11,8 +11,7 @@ namespace EMEP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Medico
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,8 +19,7 @@ namespace EMEP.Models
         {
             this.Consulta = new HashSet<Consulta>();
         }
-        [Required]
-        [Display(Name ="Correo electronico")]
+    
         public string correo { get; set; }
         public string cedula { get; set; }
         public string nombre { get; set; }
@@ -32,8 +30,7 @@ namespace EMEP.Models
         public int estado { get; set; }
         public int ID_TIPO_USUARIO { get; set; }
         public int id { get; set; }
-        public string estado_String { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consulta> Consulta { get; set; }
         public virtual Tipo_Usuario Tipo_Usuario { get; set; }

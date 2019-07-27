@@ -22,5 +22,7 @@ namespace EMEP.Models
         public string img { get; set; }
         public Nullable<int> ID_EXPEDIENTE { get; set; }
         public Nullable<int> ID_CATEGORIA { get; set; }
+    
+        public virtual Expediente Expediente { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EMEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EMEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="id" />
@@ -544,6 +544,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Otra_Actividad_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="0..1" />
+          <End Role="Otra_Actividad" Type="Self.Otra_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Otra_Actividad">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Otra_Alergia_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="0..1" />
+          <End Role="Otra_Alergia" Type="Self.Otra_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Otra_Alergia">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Otra_Enfermedad_Expediente">
+          <End Role="Expediente" Type="Self.Expediente" Multiplicity="0..1" />
+          <End Role="Otra_Enfermedad" Type="Self.Otra_Enfermedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Otra_Enfermedad">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Paciente_Paciente_Asociado_Datos_Paciente">
           <End Role="Datos_Paciente" Type="Self.Datos_Paciente" Multiplicity="1" />
           <End Role="Paciente_Paciente_Asociado" Type="Self.Paciente_Paciente_Asociado" Multiplicity="*" />
@@ -705,6 +741,18 @@
             <End Role="Expediente" EntitySet="Expediente" />
             <End Role="Medicamento" EntitySet="Medicamento" />
           </AssociationSet>
+          <AssociationSet Name="FK_Otra_Actividad_Expediente" Association="Self.FK_Otra_Actividad_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Otra_Actividad" EntitySet="Otra_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Otra_Alergia_Expediente" Association="Self.FK_Otra_Alergia_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Otra_Alergia" EntitySet="Otra_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Otra_Enfermedad_Expediente" Association="Self.FK_Otra_Enfermedad_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Otra_Enfermedad" EntitySet="Otra_Enfermedad" />
+          </AssociationSet>
           <AssociationSet Name="FK_Paciente_Paciente_Asociado_Datos_Paciente" Association="Self.FK_Paciente_Paciente_Asociado_Datos_Paciente">
             <End Role="Datos_Paciente" EntitySet="Datos_Paciente" />
             <End Role="Paciente_Paciente_Asociado" EntitySet="Paciente_Paciente_Asociado" />
@@ -722,8 +770,7 @@
             <End Role="Medico" EntitySet="Medico" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EMEPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -889,6 +936,9 @@
           <NavigationProperty Name="Fumador" Relationship="Self.FK_Fumador_Expediente" FromRole="Expediente" ToRole="Fumador" />
           <NavigationProperty Name="Lista_Actividad_Fisica" Relationship="Self.FK_Lista_Actividad_Fisica_Expediente" FromRole="Expediente" ToRole="Lista_Actividad_Fisica" />
           <NavigationProperty Name="Medicamento" Relationship="Self.FK_Medicamento_Expediente" FromRole="Expediente" ToRole="Medicamento" />
+          <NavigationProperty Name="Otra_Actividad" Relationship="EMEPModel.FK_Otra_Actividad_Expediente" FromRole="Expediente" ToRole="Otra_Actividad" />
+          <NavigationProperty Name="Otra_Alergia" Relationship="EMEPModel.FK_Otra_Alergia_Expediente" FromRole="Expediente" ToRole="Otra_Alergia" />
+          <NavigationProperty Name="Otra_Enfermedad" Relationship="EMEPModel.FK_Otra_Enfermedad_Expediente" FromRole="Expediente" ToRole="Otra_Enfermedad" />
         </EntityType>
         <EntityType Name="Expediente_Alergia">
           <Key>
@@ -1001,6 +1051,7 @@
           <Property Name="cant_veces" Type="Int32" />
           <Property Name="ID_EXPEDIENTE" Type="Int32" />
           <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Expediente" Relationship="EMEPModel.FK_Otra_Actividad_Expediente" FromRole="Otra_Actividad" ToRole="Expediente" />
         </EntityType>
         <EntityType Name="Otra_Alergia">
           <Key>
@@ -1014,6 +1065,7 @@
           <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_EXPEDIENTE" Type="Int32" />
           <Property Name="ID_CATEGORIA" Type="Int32" />
+          <NavigationProperty Name="Expediente" Relationship="EMEPModel.FK_Otra_Alergia_Expediente" FromRole="Otra_Alergia" ToRole="Expediente" />
         </EntityType>
         <EntityType Name="Otra_Enfermedad">
           <Key>
@@ -1025,6 +1077,7 @@
           <Property Name="estado" Type="Int32" />
           <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_EXPEDIENTE" Type="Int32" />
+          <NavigationProperty Name="Expediente" Relationship="EMEPModel.FK_Otra_Enfermedad_Expediente" FromRole="Otra_Enfermedad" ToRole="Expediente" />
         </EntityType>
         <EntityType Name="Paciente">
           <Key>
@@ -1493,7 +1546,55 @@
             <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
             <End Role="Paciente" EntitySet="Paciente" />
           </AssociationSet>
+          <AssociationSet Name="FK_Otra_Actividad_Expediente" Association="EMEPModel.FK_Otra_Actividad_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Otra_Actividad" EntitySet="Otra_Actividad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Otra_Alergia_Expediente" Association="EMEPModel.FK_Otra_Alergia_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Otra_Alergia" EntitySet="Otra_Alergia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Otra_Enfermedad_Expediente" Association="EMEPModel.FK_Otra_Enfermedad_Expediente">
+            <End Role="Expediente" EntitySet="Expediente" />
+            <End Role="Otra_Enfermedad" EntitySet="Otra_Enfermedad" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Otra_Actividad_Expediente">
+          <End Type="EMEPModel.Expediente" Role="Expediente" Multiplicity="0..1" />
+          <End Type="EMEPModel.Otra_Actividad" Role="Otra_Actividad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Otra_Actividad">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Otra_Alergia_Expediente">
+          <End Type="EMEPModel.Expediente" Role="Expediente" Multiplicity="0..1" />
+          <End Type="EMEPModel.Otra_Alergia" Role="Otra_Alergia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Otra_Alergia">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Otra_Enfermedad_Expediente">
+          <End Type="EMEPModel.Expediente" Role="Expediente" Multiplicity="0..1" />
+          <End Type="EMEPModel.Otra_Enfermedad" Role="Otra_Enfermedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expediente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Otra_Enfermedad">
+              <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -21,5 +21,7 @@ namespace EMEP.Models
         public Nullable<int> cant_veces { get; set; }
         public Nullable<int> ID_EXPEDIENTE { get; set; }
         public string img { get; set; }
+    
+        public virtual Expediente Expediente { get; set; }
     }
 }

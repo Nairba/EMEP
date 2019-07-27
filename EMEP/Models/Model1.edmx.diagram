@@ -58,6 +58,9 @@
         <AssociationConnector Association="EMEPModel.FK_Usuario_Tipo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Paciente_Paciente_Asociado_Paciente" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Paciente_Tipo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="EMEPModel.FK_Otra_Actividad_Expediente" />
+        <AssociationConnector Association="EMEPModel.FK_Otra_Alergia_Expediente" />
+        <AssociationConnector Association="EMEPModel.FK_Otra_Enfermedad_Expediente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,6 +25,9 @@ namespace EMEP.Models
             this.Fumador = new HashSet<Fumador>();
             this.Lista_Actividad_Fisica = new HashSet<Lista_Actividad_Fisica>();
             this.Medicamento = new HashSet<Medicamento>();
+            this.Otra_Actividad = new HashSet<Otra_Actividad>();
+            this.Otra_Alergia = new HashSet<Otra_Alergia>();
+            this.Otra_Enfermedad = new HashSet<Otra_Enfermedad>();
         }
     
         public int id { get; set; }
@@ -49,5 +52,11 @@ namespace EMEP.Models
         public virtual ICollection<Lista_Actividad_Fisica> Lista_Actividad_Fisica { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Medicamento> Medicamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Otra_Actividad> Otra_Actividad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Otra_Alergia> Otra_Alergia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Otra_Enfermedad> Otra_Enfermedad { get; set; }
     }
 }

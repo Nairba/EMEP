@@ -7,28 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+
+
 namespace EMEP.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Administrador
     {
         public int id { get; set; }
-        [Required]
-        [Display(Name ="Correo electronico")]
         public string correo { get; set; }
-        [Required]
-        [Display(Name = "Contraseña")]
         public string contraseña { get; set; }
-        [Required]
-        [Display(Name = "Estado")]
         public int estado { get; set; }
         public int ID_TIPO_USUARIO { get; set; }
-        public string estado_String { get; set; }
-        public bool estad { get; set; }
-
+    
         public virtual Tipo_Usuario Tipo_Usuario { get; set; }
+
+        public bool estad { get; set; }
+        public string estado_String { get; set; }
     }
 }
