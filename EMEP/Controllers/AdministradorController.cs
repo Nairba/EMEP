@@ -13,8 +13,6 @@ namespace EMEP.Controllers
     public class AdministradorController : Controller
     {
         private EMEPEntities db = new EMEPEntities();
-        public string estado { get; set; }
-
         // GET: Administrador
         public ActionResult Index()
         {

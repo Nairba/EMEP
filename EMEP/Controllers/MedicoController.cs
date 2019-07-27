@@ -36,6 +36,7 @@ namespace EMEP.Controllers
         public ActionResult IndexMe()
         {
             var medicos = db.Medico.Include(m => m.Tipo_Usuario);
+            string 
             foreach (var medico in medicos)
             {
                 if (medico.estado == 1)
