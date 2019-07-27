@@ -13,13 +13,32 @@ namespace EMEP.Controllers
     public class MedicoController : Controller
     {
         private EMEPEntities db = new EMEPEntities();
-  
+
         // GET: Medico
-        public ActionResult IndexMe()
+        public ActionResult Index()
         {
             var medicos = db.Medico.Include(m => m.Tipo_Usuario);
-            string correoSesion =   Session["CorreoId"].ToString();
-            
+
+            foreach (var medico in medicos)
+            {
+                if (medico.estado == 1)
+                {
+
+                    medico.estado_String = "Activo";
+                }
+                if (medico.estado == 2)
+                {
+                    medico.estado_String = "Inactivo";
+                }
+            }
+            return View(medicos.ToList());
+        }
+        public ActionResult IndexMe()
+        {
+
+            string correoSesion = Session["CorreoId"].ToString();
+            var medicos = db.Medico.Include(m => m.Tipo_Usuario );
+           
 
             foreach (var medico in medicos)
             {
@@ -35,29 +54,12 @@ namespace EMEP.Controllers
                         medico.estado_String = "Inactivo";
                     }
                 }
-              
+                medicos.Include(medico.ToString());
             }
             return View(medicos.ToList());
         }
 
-        public ActionResult Index()
-        {
-            var medicos = db.Medico.Include(m => m.Tipo_Usuario);
-            string 
-            foreach (var medico in medicos)
-            {
-                if (medico.estado == 1)
-                {
-
-                    medico.estado_String = "Activo";
-                }
-                if (medico.estado == 2)
-                {
-                    medico.estado_String = "Inactivo";
-                }
-            }
-            return View(medicos.ToList());
-        }
+      
 
         // GET: Medico/Details/5
         public ActionResult Details(int? id)
