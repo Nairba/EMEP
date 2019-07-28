@@ -183,10 +183,10 @@ namespace EMEP.Controllers
                 using (EMEPEntities db = new EMEPEntities())
                 {
                     var administradorDB = db.Administrador.Where(a => a.correo.Equals(correo) && a.contraseña.Equals(contrasenna)).FirstOrDefault();
-                    var medicoDB = db.Medico.Where(a => a.correo.Equals(correo) && a.contrasenna.Equals(contrasenna) ).FirstOrDefault();
+                    var medicoDB = db.Medico.Where(a => a.correo.Equals(correo) && a.contrasenna.Equals(contrasenna)).FirstOrDefault();
                     var pacienteDB = db.Paciente.Where(a => a.correo.Equals(correo) && a.contrasenna.Equals(contrasenna) && a.estado == 1).FirstOrDefault();
 
-                  
+
                     if (administradorDB != null && administradorDB.estado == 1)
                     {
                         Session["CorreoId"] = administradorDB.correo.ToString();
@@ -218,6 +218,7 @@ namespace EMEP.Controllers
                 return View(ad);
             }
         }
+        
         public ActionResult LogOff()
         {
             Session.Clear();

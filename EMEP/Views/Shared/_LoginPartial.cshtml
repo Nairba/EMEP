@@ -17,7 +17,22 @@
 else
 {
     <ul class="navbar-nav  mr-auto " style="float:left">
-        
         <li>@Html.ActionLink("Iniciar sesión", "InicioSesion", "Administrador", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })</li>
+
+        @if (Session["CorreoId"] != null)
+        {
+            <li class="nav-item ">
+                <a class="nav-link " href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    @Session["CorreoId"].ToString()
+                </a>
+            </li>
+            @*<li class="nav-item" style="color:white">
+                <a class="nav-link" href="@Url.Action("LogOff", "Administrador")">Cerrar Sesión</a>
+            </li>*@
+            <li>@Html.ActionLink("Cerrar Sesión", "LogOff", "Administrador", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })</li>
+
+        }
+        
+        <li>@*@Html.ActionLink("Iniciar sesión", "InicioSesion", "Administrador", routeValues: null, htmlAttributes: new { @class = "nav-link", id = "loginLink" })*@</li>
     </ul>
 }
