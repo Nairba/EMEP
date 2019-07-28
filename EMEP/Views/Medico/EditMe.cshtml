@@ -1,11 +1,12 @@
 ﻿@model EMEP.Models.Medico
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "EditMe";
     Layout = "~/Views/Shared/_LayoutMED.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>EditMe</h2>
+
 
 @using (Html.BeginForm())
 {
@@ -79,13 +80,13 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.ID_TIPO_USUARIO, "ID_TIPO_USUARIO", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ID_TIPO_USUARIO", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ID_TIPO_USUARIO, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         @Html.HiddenFor(model => model.id)
 
@@ -98,5 +99,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "IndexMe")
 </div>

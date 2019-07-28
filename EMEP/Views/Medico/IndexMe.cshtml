@@ -70,8 +70,8 @@
                 @Html.DisplayFor(modelItem => item.Tipo_Usuario.descripcion)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Edit", "EditMe", new { id = item.id }) |
+                @Html.ActionLink("Details", "DetailsMe", new { id = item.id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.id })
             </td>
         </tr>

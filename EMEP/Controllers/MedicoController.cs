@@ -86,6 +86,30 @@ namespace EMEP.Controllers
             return View(medico);
         }
 
+        public ActionResult DetailsMe(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Medico medico = db.Medico.Find(id);
+            if (medico.estado == 1)
+            {
+
+                medico.estado_String = "Activo";
+            }
+            if (medico.estado == 2)
+            {
+                medico.estado_String = "Inactivo";
+            }
+            if (medico == null)
+            {
+                return HttpNotFound();
+            }
+            return View(medico);
+        }
+
+
         // GET: Medico/Create
         public ActionResult Create()
         {
