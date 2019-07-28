@@ -113,6 +113,7 @@ namespace EMEP.Controllers
             return View(medico);
         }
 
+
         // GET: Medico/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -141,6 +142,39 @@ namespace EMEP.Controllers
                 db.Entry(medico).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            ViewBag.ID_TIPO_USUARIO = new SelectList(db.Tipo_Usuario, "id", "descripcion", medico.ID_TIPO_USUARIO);
+            return View(medico);
+        }
+
+
+        public ActionResult EditMe(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Medico medico = db.Medico.Find(id);
+            if (medico == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.ID_TIPO_USUARIO = new SelectList(db.Tipo_Usuario, "id", "descripcion", medico.ID_TIPO_USUARIO);
+            return View(medico);
+        }
+
+        // POST: Medico/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditMe(Medico medico)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(medico).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("IndexMe");
             }
             ViewBag.ID_TIPO_USUARIO = new SelectList(db.Tipo_Usuario, "id", "descripcion", medico.ID_TIPO_USUARIO);
             return View(medico);
