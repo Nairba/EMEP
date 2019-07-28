@@ -7,83 +7,86 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Medico</h4>
+<div class="card border-light mb-3 col-md-8" style="max-width: 18rem;">
+   <div class="card-header"><h4>Medico</h4></div> 
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.correo)
-        </dt>
+    <div class="class="card-body">
+        <div class="form-row">
+            <dl class="d-lg-table-row">
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.correo)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.correo)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.correo)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.cedula)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.cedula)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.cedula)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.cedula)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.nombre)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.nombre)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.p_Apellido)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.p_Apellido)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.p_Apellido)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.p_Apellido)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.s_Apellido)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.s_Apellido)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.s_Apellido)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.s_Apellido)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.contrasenna)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.contrasenna)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.contrasenna)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.contrasenna)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.sexo)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.sexo)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.sexo)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.sexo)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.estado)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.estado)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.estado_String)
-        </dd>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.estado_String)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Tipo_Usuario.descripcion)
-        </dt>
+                <dt class="card-title">
+                    @Html.DisplayNameFor(model => model.Tipo_Usuario.descripcion)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Tipo_Usuario.descripcion)
-        </dd>
-
-    </dl>
+                <dd class="card-text">
+                    @Html.DisplayFor(model => model.Tipo_Usuario.descripcion)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
