@@ -37,8 +37,10 @@ namespace EMEP.Controllers
         {
 
             string correoSesion = Session["CorreoId"].ToString();
-            var medicos = db.Medico.Include(m => m.Tipo_Usuario );
-           
+
+            var medicos = from m in db.Medico
+                          where m.correo == correoSesion
+                          select m;
 
             foreach (var medico in medicos)
             {
