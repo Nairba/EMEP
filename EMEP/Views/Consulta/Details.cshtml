@@ -1,0 +1,51 @@
+﻿@model EMEP.Models.Consulta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAD.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Consulta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consultorio.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consultorio.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Especialidad.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Especialidad.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medico.correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medico.correo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
