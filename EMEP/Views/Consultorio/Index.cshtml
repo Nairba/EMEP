@@ -1,4 +1,8 @@
-﻿@model IEnumerable<EMEP.Models.Consultorio>
+﻿
+@model PagedList.IPagedList<EMEP.Models.Consultorio>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+
 
 @{
     ViewBag.Title = "Index";
@@ -10,13 +14,27 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("Index", "Consultorio",FormMethod.Get))
+{
+    <p>
+        Ingresar el dato: @Html.TextBox("buscar", ViewBag.filtroActual as string)
+        <input type="submit" value="Buscar"/>
+    </p>
+}
+
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.descripcion)
+            
+            @Html.ActionLink("Descripción", "Index", new { dato=ViewBag.Descripcion1, filtro= ViewBag.filtroActual})
+            
         </th>
+        
         <th>
-            @Html.DisplayNameFor(model => model.numero)
+            
+            @Html.ActionLink("Numero","Index", new { dato= ViewBag.Numero1, filtro = ViewBag.filtroActual})
         </th>
         <th></th>
     </tr>
@@ -38,3 +56,7 @@
 }
 
 </table>
+<br/>
+Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, dato= ViewBag.actual, filtro = ViewBag.filtroActual }))

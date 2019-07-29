@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EMEP.Models;
+using PagedList;
 
 namespace EMEP.Controllers
 {
@@ -15,12 +16,31 @@ namespace EMEP.Controllers
         private EMEPEntities db = new EMEPEntities();
 
         // GET: Consultorio
-        public ActionResult Index(string dato)
+        public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
+            ViewBag.actual = dato;
             ViewBag.Descripcion1 = string.IsNullOrEmpty(dato) ? "des" : "";
             ViewBag.Numero1 = dato == "Numero" ? "num" : "Numero";
+
+            if (buscar!= null)
+            {
+                page = 1;
+            }
+            else
+            {
+                buscar = filtro;
+            }
+
+            ViewBag.filtroActual = buscar;
+
             var consultorio = from co in db.Consultorio
                               select co;
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                consultorio = consultorio.Where(co => co.descripcion.Contains(buscar)
+                  || co.numero.Contains(buscar));
+            }
 
             switch (dato)
             {
@@ -38,7 +58,9 @@ namespace EMEP.Controllers
                     break;
             }
 
-            return View(db.Consultorio.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(consultorio.ToPagedList(pageNumber,pageSize));
         }
 
         // GET: Consultorio/Details/5
