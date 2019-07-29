@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EMEP.Models;
+using PagedList;
 
 namespace EMEP.Controllers
 {
@@ -15,9 +16,46 @@ namespace EMEP.Controllers
         private EMEPEntities db = new EMEPEntities();
 
         // GET: Especialidad
-        public ActionResult Index()
+        public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
-            return View(db.Especialidad.ToList());
+            ViewBag.actual = dato;
+          
+            ViewBag.Descripcion1 = dato == "Descripcion" ? "des" : "Descripcion";
+
+            if (buscar != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                buscar = filtro;
+            }
+
+            ViewBag.filtroActual = buscar;
+
+            var especialidad = from es in db.Especialidad
+                               select es;
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                especialidad = especialidad.Where(es => es.descripcion.Contains(buscar));
+            }
+
+
+            switch (dato)
+            {
+               
+                case "des":
+                    especialidad = especialidad.OrderByDescending(es => es.descripcion);
+                    break;
+                default:
+                    especialidad = especialidad.OrderBy(es => es.descripcion);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(especialidad.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Especialidad/Details/5

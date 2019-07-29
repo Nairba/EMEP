@@ -60,3 +60,9 @@
 Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, dato= ViewBag.actual, filtro = ViewBag.filtroActual }))
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
