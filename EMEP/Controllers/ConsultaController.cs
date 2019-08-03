@@ -39,9 +39,9 @@ namespace EMEP.Controllers
         // GET: Consulta/Create
         public ActionResult Create()
         {
-            ViewBag.ID_CONSULTORIO = new SelectList(db.Consultorio, "id", "descripcion");
-            ViewBag.ID_ESPECIALIDAD = new SelectList(db.Especialidad, "id", "descripcion");
-            ViewBag.ID_MEDICO = new SelectList(db.Medico, "id", "correo");
+            ViewBag.listaConsultorio = new SelectList(db.Consultorio, "id", "descripcion");
+            ViewBag.listaEspecialidad = new SelectList(db.Especialidad, "id", "descripcion");
+            ViewBag.listaMedicos = new SelectList(db.Medico, "id", "NombreCompletoM");
             return View();
         }
 

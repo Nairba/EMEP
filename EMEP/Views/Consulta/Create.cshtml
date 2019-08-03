@@ -19,7 +19,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ID_MEDICO, "ID_MEDICO", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ID_MEDICO", null, htmlAttributes: new { @class = "form-control" })
+               @Html.DropDownListFor(model => model.ID_MEDICO,
+              (SelectList)ViewBag.listaMedicos,"Seleccione a un Medico",
+              htmlAttributes: new {@class="form-control"})
+
                 @Html.ValidationMessageFor(model => model.ID_MEDICO, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -27,7 +30,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ID_CONSULTORIO, "ID_CONSULTORIO", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ID_CONSULTORIO", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.ID_CONSULTORIO,
+              (SelectList)ViewBag.listaConsultorio, "Seleccione a un Consultorio",
+              htmlAttributes: new { @class = "form-control" })
+
                 @Html.ValidationMessageFor(model => model.ID_CONSULTORIO, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,7 +49,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ID_ESPECIALIDAD, "ID_ESPECIALIDAD", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ID_ESPECIALIDAD", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.ID_ESPECIALIDAD,
+              (SelectList)ViewBag.listaEspecialidad, "Seleccione a una Especialidad",
+              htmlAttributes: new { @class = "form-control" })
+
+                
                 @Html.ValidationMessageFor(model => model.ID_ESPECIALIDAD, "", new { @class = "text-danger" })
             </div>
         </div>

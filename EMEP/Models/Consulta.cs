@@ -11,7 +11,8 @@ namespace EMEP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Consulta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,16 +21,27 @@ namespace EMEP.Models
             this.Cita = new HashSet<Cita>();
         }
     
+        [Key]
         public int id { get; set; }
+        [Display(Name ="Medico")]
         public int ID_MEDICO { get; set; }
+        [Display(Name = "Consultorio")]
         public int ID_CONSULTORIO { get; set; }
+        [Display(Name = "Precio")]
+        [DisplayFormat(DataFormatString ="{0:N2}",
+            ApplyFormatInEditMode =true)]
         public decimal precio { get; set; }
+        [Display(Name = "Especialidad")]
         public int ID_ESPECIALIDAD { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cita> Cita { get; set; }
+
+        [Display(Name ="Consultorio")]
         public virtual Consultorio Consultorio { get; set; }
+        [Display(Name ="Especialidad")]
         public virtual Especialidad Especialidad { get; set; }
+        [Display(Name ="Medico")]
         public virtual Medico Medico { get; set; }
     }
 }
