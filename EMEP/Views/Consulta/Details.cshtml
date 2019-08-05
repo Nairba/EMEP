@@ -5,30 +5,24 @@
     Layout = "~/Views/Shared/_LayoutAD.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalles</h2>
 
 <div>
     <h4>Consulta</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.precio)
+            @Html.DisplayNameFor(model => model.Medico)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.precio)
+            @Html.DisplayFor(model => model.Medico.nombre)
+            @Html.DisplayFor(model => model.Medico.p_Apellido)
+            @Html.DisplayFor(model => model.Medico.s_Apellido)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Consultorio.descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Consultorio.descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Especialidad.descripcion)
+            @Html.DisplayNameFor(model => model.Especialidad)
         </dt>
 
         <dd>
@@ -36,16 +30,30 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Medico.correo)
+            @Html.DisplayNameFor(model => model.Consultorio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Medico.correo)
+            @Html.DisplayFor(model => model.Consultorio.descripcion)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button type="button" class="btn btn-outline-primary"
+            onclick="location.href='@Url.Action("Edit", "Consulta",new { id = Model.id })'">
+        Editar
+    </button>  
+     
+    <button type="button" class="btn btn-outline-success"
+            onclick="location.href='@Url.Action("Index", "Consulta")'">
+        Regresar
+    </button>  
 </p>

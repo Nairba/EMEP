@@ -23,7 +23,7 @@ namespace EMEP.Models
     
         [Key]
         public int id { get; set; }
-        [Display(Name ="Medico")]
+        [Display(Name ="Médico")]
         public int ID_MEDICO { get; set; }
         [Display(Name = "Consultorio")]
         public int ID_CONSULTORIO { get; set; }

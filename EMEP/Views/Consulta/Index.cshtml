@@ -5,52 +5,84 @@
     Layout = "~/Views/Shared/_LayoutAD.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Consulta</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn btn-outline-info"
+            onclick="location.href='@Url.Action("Create", "Consulta")'">
+        Nuevo
+    </button>  
+  
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Medico)
-           
-        </th>
-        <th>
-            
-            @Html.DisplayNameFor(model => model.Especialidad)
-        </th>
-        <th>
-           @Html.DisplayNameFor(model => model.Consultorio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.precio)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Medico)
+                @Ajax.ActionLink("Asc", "OrdenarConsulta",
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-          
-            @Html.DisplayFor(modelItem => item.Medico.NombreCompletoM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Especialidad.descripcion)
-        </td>
-        <td style="text-align:center;">
-               
-             @Html.DisplayFor(modelItem => item.Consultorio.numero)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.precio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+new
+{
+    criterio = "asc"
+},
+new AjaxOptions
+{
+    UpdateTargetId = "resultado",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "Get"
+                }
+          )
+                @Ajax.ActionLink("Des", "OrdenarConsulta",
 
+               new
+               {
+                   criterio = "desc1"
+               },
+               new AjaxOptions
+               {
+                   UpdateTargetId= "resultado",
+                   InsertionMode=InsertionMode.Replace,
+                   HttpMethod="Get"
+               }
+               )
+    </th>
+    <th>
+
+        @Html.DisplayNameFor(model => model.Especialidad)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Consultorio)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.precio)
+    </th>
+    <th></th>
+</tr>
+</thead>
+    <tbody id="resultado">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Medico.NombreCompletoM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidad.descripcion)
+                </td>
+                <td style="text-align:center;">
+
+                    @Html.DisplayFor(modelItem => item.Consultorio.numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.precio)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

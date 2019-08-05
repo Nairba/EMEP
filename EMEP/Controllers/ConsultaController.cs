@@ -21,6 +21,36 @@ namespace EMEP.Controllers
             return View(consulta.ToList());
         }
 
+        public ActionResult OrdenarConsulta(string criterio)
+        {
+            ViewBag.acrtual = criterio;
+            ViewBag.Medico = string.IsNullOrEmpty(criterio) ? "asc" : "";
+            ViewBag.Especialidad = criterio == "desc1" ? "desc2" : "desc2";
+
+
+            var consulta = from co in db.Consulta
+                           select co;
+
+            switch (criterio)
+            {
+                case "asc":
+                    consulta = consulta.OrderByDescending(co => co.Medico);
+                    break;
+                case "desc1":
+                    consulta = consulta.OrderBy(co => co.Especialidad);
+                    break;
+                case "desc2":
+                    consulta = consulta.OrderByDescending(co => co.Especialidad);
+                    break;
+                default:
+                    consulta = consulta.OrderBy(co => co.Medico);
+                    break;
+            }
+            return View(consulta.ToList());
+        }
+
+
+
         // GET: Consulta/Details/5
         public ActionResult Details(int? id)
         {
@@ -59,9 +89,9 @@ namespace EMEP.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ID_CONSULTORIO = new SelectList(db.Consultorio, "id", "descripcion", consulta.ID_CONSULTORIO);
-            ViewBag.ID_ESPECIALIDAD = new SelectList(db.Especialidad, "id", "descripcion", consulta.ID_ESPECIALIDAD);
-            ViewBag.ID_MEDICO = new SelectList(db.Medico, "id", "correo", consulta.ID_MEDICO);
+            ViewBag.listaConsultorio = new SelectList(db.Consultorio, "id", "descripcion");
+            ViewBag.listaEspecialidad = new SelectList(db.Especialidad, "id", "descripcion");
+            ViewBag.listaMedicos = new SelectList(db.Medico, "id", "NombreCompletoM");
             return View(consulta);
         }
 
@@ -77,9 +107,9 @@ namespace EMEP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ID_CONSULTORIO = new SelectList(db.Consultorio, "id", "descripcion", consulta.ID_CONSULTORIO);
-            ViewBag.ID_ESPECIALIDAD = new SelectList(db.Especialidad, "id", "descripcion", consulta.ID_ESPECIALIDAD);
-            ViewBag.ID_MEDICO = new SelectList(db.Medico, "id", "correo", consulta.ID_MEDICO);
+            ViewBag.listaConsultorio = new SelectList(db.Consultorio, "id", "descripcion");
+            ViewBag.listaEspecialidad = new SelectList(db.Especialidad, "id", "descripcion");
+            ViewBag.listaMedicos = new SelectList(db.Medico, "id", "NombreCompletoM");
             return View(consulta);
         }
 
@@ -96,9 +126,9 @@ namespace EMEP.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ID_CONSULTORIO = new SelectList(db.Consultorio, "id", "descripcion", consulta.ID_CONSULTORIO);
-            ViewBag.ID_ESPECIALIDAD = new SelectList(db.Especialidad, "id", "descripcion", consulta.ID_ESPECIALIDAD);
-            ViewBag.ID_MEDICO = new SelectList(db.Medico, "id", "correo", consulta.ID_MEDICO);
+            ViewBag.listaConsultorio = new SelectList(db.Consultorio, "id", "descripcion");
+            ViewBag.listaEspecialidad = new SelectList(db.Especialidad, "id", "descripcion");
+            ViewBag.listaMedicos = new SelectList(db.Medico, "id", "NombreCompletoM");
             return View(consulta);
         }
 
