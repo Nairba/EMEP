@@ -18,6 +18,12 @@ namespace EMEP.Controllers
         // GET: Consultorio
         public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
+
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
+            }
+
             ViewBag.actual = dato;
             ViewBag.Descripcion1 = string.IsNullOrEmpty(dato) ? "des" : "";
             ViewBag.Numero1 = dato == "Numero" ? "num" : "Numero";
@@ -68,14 +74,17 @@ namespace EMEP.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["mensaje"] = "Especifique un Consultorio";
+                return RedirectToAction("Index");
             }
             Consultorio consultorio = db.Consultorio.Find(id);
             if (consultorio == null)
             {
-                return HttpNotFound();
+                TempData["mensaje"] = "No existe el Consultorio";
+                return RedirectToAction("Index");
             }
-            return View(consultorio);
+        
+            return View("Details", consultorio);
         }
 
         // GET: Consultorio/Create
@@ -89,16 +98,27 @@ namespace EMEP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,descripcion,numero")] Consultorio consultorio)
-        {
-            if (ModelState.IsValid)
+        public ActionResult Create(Models.Consultorio objConsul)   
+     {
+
+            if (TempData.ContainsKey("mensaje"))
             {
-                db.Consultorio.Add(consultorio);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
             }
 
-            return View(consultorio);
+            try
+            {
+                db.Consultorio.Add(objConsul);
+                db.SaveChanges();
+                TempData["mensaje"] = "Consultorio guardado satisfactoriamente!";
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                TempData["mensaje"] = "Consultorio NO registrado";
+                return View();
+            }
         }
 
         // GET: Consultorio/Edit/5
@@ -106,12 +126,14 @@ namespace EMEP.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["mensaje"] = "Especifique un Consultorio";
+                return RedirectToAction("Index");
             }
             Consultorio consultorio = db.Consultorio.Find(id);
             if (consultorio == null)
             {
-                return HttpNotFound();
+                TempData["mensaje"] = "No existe el Consulotorio";
+                return RedirectToAction("Index");
             }
             return View(consultorio);
         }
@@ -121,15 +143,27 @@ namespace EMEP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,descripcion,numero")] Consultorio consultorio)
+        public ActionResult Edit(Models.Consultorio objCon)
         {
-            if (ModelState.IsValid)
+
+            if (TempData.ContainsKey("mensaje"))
             {
-                db.Entry(consultorio).State = EntityState.Modified;
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
+            }
+
+            try
+            {
+                db.Entry(objCon).State = EntityState.Modified;
                 db.SaveChanges();
+                TempData["mensaje"] = "Consultorio actualizado satisfactoriamente!";
                 return RedirectToAction("Index");
             }
-            return View(consultorio);
+            catch 
+            {
+
+                TempData["mensaje"] = "El Consultorio no se logro actualizar";
+                return View();
+            }
         }
 
         // GET: Consultorio/Delete/5

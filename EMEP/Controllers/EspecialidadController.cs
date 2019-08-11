@@ -18,6 +18,11 @@ namespace EMEP.Controllers
         // GET: Especialidad
         public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
+            }
+
             ViewBag.actual = dato;
           
             ViewBag.Descripcion1 = dato == "Descripcion" ? "des" : "Descripcion";
@@ -64,14 +69,16 @@ namespace EMEP.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["mensaje"] = "Especifique la Especialidad";
+                return RedirectToAction("Index");
             }
             Especialidad especialidad = db.Especialidad.Find(id);
             if (especialidad == null)
             {
-                return HttpNotFound();
+                TempData["mensaje"] = "No existe la Especialidad";
+                return RedirectToAction("Index");
             }
-            return View(especialidad);
+            return View("Details", especialidad);
         }
 
         // GET: Especialidad/Create
@@ -85,16 +92,34 @@ namespace EMEP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,descripcion")] Especialidad especialidad)
+        public ActionResult Create(Models.Especialidad objEspe)
         {
+            if (TempData.ContainsKey("mensaje"))
+            {
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
+            }
+
+            try
+            {
+                db.Especialidad.Add(objEspe);
+                db.SaveChanges();
+                TempData["mensaje"] = "Especialidad guardado satisfactoriamente!";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                TempData["mensaje"] = "Especilaidad NO registrado";
+                return View();
+            }
+
             if (ModelState.IsValid)
             {
-                db.Especialidad.Add(especialidad);
+                db.Especialidad.Add(objEspe);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(especialidad);
+            return View(objEspe);
         }
 
         // GET: Especialidad/Edit/5
@@ -102,12 +127,14 @@ namespace EMEP.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["mensaje"] = "Especifique una Especialidad";
+                return RedirectToAction("Index");
             }
             Especialidad especialidad = db.Especialidad.Find(id);
             if (especialidad == null)
             {
-                return HttpNotFound();
+                TempData["mensaje"] = "No existe la Especialidad";
+                return RedirectToAction("Index");
             }
             return View(especialidad);
         }
@@ -117,15 +144,29 @@ namespace EMEP.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,descripcion")] Especialidad especialidad)
+        public ActionResult Edit(Models.Especialidad objEsp)
         {
-            if (ModelState.IsValid)
+            if (TempData.ContainsKey("mensaje"))
             {
-                db.Entry(especialidad).State = EntityState.Modified;
+                ViewBag.Mensaje = TempData["mensaje"].ToString();
+            }
+
+            try
+            {
+                db.Entry(objEsp).State = EntityState.Modified;
                 db.SaveChanges();
+           
+                TempData["mensaje"] = "Especialidad actualizado satisfactoriamente!";
                 return RedirectToAction("Index");
             }
-            return View(especialidad);
+            catch 
+            {
+
+                TempData["mensaje"] = "La Especilaidad no se logro actualizar";
+                return View();
+            }
+          
+           
         }
 
         // GET: Especialidad/Delete/5

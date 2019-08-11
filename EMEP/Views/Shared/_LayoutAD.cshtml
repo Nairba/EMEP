@@ -5,12 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - EMEP</title>
-
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  
     <script src="~/Scripts/jquery-3.4.1.js"></script>
-
     <script src="~/Scripts/bootstrap.min.js"></script>
- 
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -54,6 +52,15 @@
         </div>
     </nav>
     @*MENU*@
+
+    @if (ViewBag.Mensaje != "" && ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-dismissible alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+            <p class="mb-0">@ViewBag.Mensaje</p>
+        </div>
+    }
 
 
     <div class="container body-content">
