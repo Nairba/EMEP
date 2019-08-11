@@ -11,7 +11,8 @@ namespace EMEP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Consultorio
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,13 @@ namespace EMEP.Models
         {
             this.Consulta = new HashSet<Consulta>();
         }
-    
+
+    [Key]
         public int id { get; set; }
+        [Display(Name = "Descripción")]
         public string descripcion { get; set; }
+        [Display(Name = "Número")]
+        [RegularExpression(@"[0-9]{2}", ErrorMessage = "Solo acepta números, con 2 dígitos")]
         public string numero { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

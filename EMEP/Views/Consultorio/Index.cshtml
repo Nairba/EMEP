@@ -9,10 +9,13 @@
     Layout = "~/Views/Shared/_LayoutAD.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Consultorio</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button type="button" class="btn btn-outline-info"
+            onclick="location.href='@Url.Action("Create", "Consultorio")'">
+        Nuevo
+    </button>
 </p>
 
 @using (Html.BeginForm("Index", "Consultorio",FormMethod.Get))
@@ -61,8 +64,12 @@ Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.Pa
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, dato= ViewBag.actual, filtro = ViewBag.filtroActual }))
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="form-group">
+    <div>
+        <button type="button" class="btn btn-outline-success"
+                onclick="location.href='@Url.Action("Index", "Consultorio")'">
+            Regresar
+        </button>
+    </div>
 </div>
-
 

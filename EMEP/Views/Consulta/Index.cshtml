@@ -1,4 +1,7 @@
-﻿@model IEnumerable<EMEP.Models.Consulta>
+﻿
+@model PagedList.IPagedList<EMEP.Models.Consulta>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 
 @{
     ViewBag.Title = "Index";
@@ -11,55 +14,38 @@
     <button type="button" class="btn btn-outline-info"
             onclick="location.href='@Url.Action("Create", "Consulta")'">
         Nuevo
-    </button>  
-  
+    </button>
 </p>
+
+@using (Html.BeginForm("Index", "Consulta", FormMethod.Get))
+{
+    <p>
+        Ingresar el dato: @Html.TextBox("buscar", ViewBag.filtroActual as string)
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
 <table class="table">
-    <thead>
+   
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Medico)
-                @Ajax.ActionLink("Asc", "OrdenarConsulta",
 
-new
-{
-    criterio = "asc"
-},
-new AjaxOptions
-{
-    UpdateTargetId = "resultado",
-    InsertionMode = InsertionMode.Replace,
-    HttpMethod = "Get"
-                }
-          )
-                @Ajax.ActionLink("Des", "OrdenarConsulta",
+                @Html.ActionLink("Medico", "Index", new { dato = ViewBag.Medico1, filtro = ViewBag.filtroActual })
+            </th>
+            <th>
 
-               new
-               {
-                   criterio = "desc1"
-               },
-               new AjaxOptions
-               {
-                   UpdateTargetId= "resultado",
-                   InsertionMode=InsertionMode.Replace,
-                   HttpMethod="Get"
-               }
-               )
-    </th>
-    <th>
+                @Html.ActionLink("Especialidad", "Index", new { dato = ViewBag.Espe, filtro = ViewBag.filtroActual })
+            </th>
+            <th>
+                Consultorio
 
-        @Html.DisplayNameFor(model => model.Especialidad)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.Consultorio)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.precio)
-    </th>
-    <th></th>
-</tr>
-</thead>
-    <tbody id="resultado">
+            <th>
+
+                Precio
+            </th>
+            <th></th>
+        </tr>
+  
         @foreach (var item in Model)
         {
             <tr>
@@ -84,5 +70,20 @@ new AjaxOptions
                 </td>
             </tr>
         }
-    </tbody>
+  
 </table>
+
+<br />
+Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, dato = ViewBag.actual, filtro = ViewBag.filtroActual }))
+
+
+<div class="form-group">
+    <div>
+        <button type="button" class="btn btn-outline-success"
+                onclick="location.href='@Url.Action("Index", "Consulta")'">
+            Regresar
+        </button>
+    </div>
+</div>

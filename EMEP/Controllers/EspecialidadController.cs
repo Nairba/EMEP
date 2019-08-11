@@ -55,6 +55,7 @@ namespace EMEP.Controllers
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
+         
             return View(especialidad.ToPagedList(pageNumber, pageSize));
         }
 
