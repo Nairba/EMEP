@@ -216,9 +216,6 @@
     <Compile Include="Models\Cirugia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cita.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Compartir_Expediente.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
