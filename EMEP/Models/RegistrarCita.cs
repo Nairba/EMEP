@@ -12,27 +12,24 @@ namespace EMEP.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Medico
+    public partial class RegistrarCita
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Medico()
+        public RegistrarCita()
         {
-            this.Consulta = new HashSet<Consulta>();
+            this.ListaCita = new HashSet<ListaCita>();
         }
     
-        public string correo { get; set; }
-        public string cedula { get; set; }
-        public string nombre { get; set; }
-        public string p_Apellido { get; set; }
-        public string s_Apellido { get; set; }
-        public string contrasenna { get; set; }
-        public string sexo { get; set; }
-        public int estado { get; set; }
-        public int ID_TIPO_USUARIO { get; set; }
         public int id { get; set; }
+        public string ID_PACIENTE { get; set; }
+        public int ID_CONSULTA { get; set; }
+        public int ID_HORARIO { get; set; }
+        public int disponible { get; set; }
+        public string descripcion { get; set; }
     
+        public virtual Consulta Consulta { get; set; }
+        public virtual Horario Horario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Consulta> Consulta { get; set; }
-        public virtual Tipo_Usuario Tipo_Usuario { get; set; }
+        public virtual ICollection<ListaCita> ListaCita { get; set; }
     }
 }

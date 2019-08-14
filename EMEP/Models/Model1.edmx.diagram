@@ -5,41 +5,38 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="77b5e139a1cb452bab7ea65e6195a414" Name="Diagram1">
-        <EntityTypeShape EntityType="EMEPModel.Administrador" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Alcohol" Width="1.5" PointX="7.5" PointY="18.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Categoria" Width="1.5" PointX="3" PointY="30.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Categoria_Alergia" Width="1.5" PointX="6" PointY="43.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Cirugia" Width="1.5" PointX="7.5" PointY="21.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Cita" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Compartir_Expediente" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Consulta" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Consultorio" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Datos_Paciente" Width="1.5" PointX="3" PointY="26.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Enfermedad_Expediente" Width="1.5" PointX="7.5" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Enfermedad_Familiar" Width="1.5" PointX="7.5" PointY="27.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Especialidad" Width="1.5" PointX="3" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Expediente" Width="1.5" PointX="5.25" PointY="23.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Expediente_Alergia" Width="1.5" PointX="10.5" PointY="24.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Fumador" Width="1.5" PointX="7.5" PointY="33.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Horario" Width="1.5" PointX="5.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Lista_Actividad_Fisica" Width="1.5" PointX="7.5" PointY="36.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Lista_Alergia" Width="1.5" PointX="8.25" PointY="43.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Lista_Enfermedad" Width="1.5" PointX="5.25" PointY="30.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Medicamento" Width="1.5" PointX="7.5" PointY="39.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Medico" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Otra_Actividad" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Otra_Alergia" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Otra_Enfermedad" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Paciente" Width="1.5" PointX="3" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Paciente_Paciente_Asociado" Width="1.5" PointX="5.25" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="EMEPModel.Tipo_Usuario" Width="1.5" PointX="0.75" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Administrador" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Alcohol" Width="1.5" PointX="7.5" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Categoria" Width="1.5" PointX="6" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Categoria_Alergia" Width="1.5" PointX="6" PointY="39" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Cirugia" Width="1.5" PointX="7.5" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Compartir_Expediente" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Consulta" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Consultorio" Width="1.5" PointX="3" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Datos_Paciente" Width="1.5" PointX="3" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Enfermedad_Expediente" Width="1.5" PointX="10.5" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Enfermedad_Familiar" Width="1.5" PointX="10.5" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Especialidad" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Expediente" Width="1.5" PointX="5.25" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Expediente_Alergia" Width="1.5" PointX="10.5" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Fumador" Width="1.5" PointX="7.5" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Horario" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Lista_Actividad_Fisica" Width="1.5" PointX="7.5" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Lista_Alergia" Width="1.5" PointX="8.25" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Lista_Enfermedad" Width="1.5" PointX="8.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Medicamento" Width="1.5" PointX="7.5" PointY="52.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Medico" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Otra_Actividad" Width="1.5" PointX="7.5" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Otra_Alergia" Width="1.5" PointX="7.5" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Otra_Enfermedad" Width="1.5" PointX="7.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Paciente" Width="1.5" PointX="3" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Paciente_Paciente_Asociado" Width="1.5" PointX="5.25" PointY="28.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EMEPModel.Tipo_Usuario" Width="1.5" PointX="0.75" PointY="25.125" IsExpanded="true" />
         <AssociationConnector Association="EMEPModel.FK_Administrador_Tipo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Alcohol_Expediente" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Lista_Enfermedad_Categoria" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Lista_Alergia_Categoria_Alergia" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Cirugia_Expediente" ManuallyRouted="false" />
-        <AssociationConnector Association="EMEPModel.FK_Cita_Consulta" ManuallyRouted="false" />
-        <AssociationConnector Association="EMEPModel.FK_Cita_Horario" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Compartir_Expediente_Paciente" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Consulta_Consultorio" ManuallyRouted="false" />
         <AssociationConnector Association="EMEPModel.FK_Consulta_Especialidad" ManuallyRouted="false" />
@@ -61,6 +58,14 @@
         <AssociationConnector Association="EMEPModel.FK_Otra_Actividad_Expediente" />
         <AssociationConnector Association="EMEPModel.FK_Otra_Alergia_Expediente" />
         <AssociationConnector Association="EMEPModel.FK_Otra_Enfermedad_Expediente" />
+        <EntityTypeShape EntityType="EMEPModel.AgendaCita" Width="1.5" PointX="7.875" PointY="4" />
+        <EntityTypeShape EntityType="EMEPModel.ListaCita" Width="1.5" PointX="10.25" PointY="7.5" />
+        <EntityTypeShape EntityType="EMEPModel.RegistrarCita" Width="1.5" PointX="7.875" PointY="7.375" />
+        <EntityTypeShape EntityType="EMEPModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="EMEPModel.FK_AgendaCita_Horario" />
+        <AssociationConnector Association="EMEPModel.FK_RegistrarCita_Consulta" />
+        <AssociationConnector Association="EMEPModel.FK_RegistrarCita_Horario" />
+        <AssociationConnector Association="EMEPModel.FK_ListaCita_RegistrarCita" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

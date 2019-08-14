@@ -12,14 +12,11 @@ namespace EMEP.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Administrador
+    public partial class ListaCita
     {
         public int id { get; set; }
-        public string correo { get; set; }
-        public string contraseña { get; set; }
-        public int estado { get; set; }
-        public int ID_TIPO_USUARIO { get; set; }
+        public int idRegistrarCita { get; set; }
     
-        public virtual Tipo_Usuario Tipo_Usuario { get; set; }
+        public virtual RegistrarCita RegistrarCita { get; set; }
     }
 }
