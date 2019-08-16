@@ -15,7 +15,7 @@ namespace EMEP.Controllers
     {
         private EMEPEntities db = new EMEPEntities();
 
-        // GET: Consultorio
+        // GET: Consultorios
         public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
 
