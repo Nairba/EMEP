@@ -19,11 +19,7 @@ namespace EMEP.Controllers
         public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
 
-            if (TempData.ContainsKey("mensaje"))
-            {
-                ViewBag.Mensaje = TempData["mensaje"].ToString();
-            }
-
+           
             ViewBag.actual = dato;
             ViewBag.Descripcion1 = string.IsNullOrEmpty(dato) ? "des" : "";
             ViewBag.Numero1 = dato == "Numero" ? "num" : "Numero";

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using EMEP.Models;
+using PagedList;
+
 
 namespace EMEP.Controllers
 {
@@ -15,38 +17,55 @@ namespace EMEP.Controllers
         private EMEPEntities db = new EMEPEntities();
 
         // GET: Consulta
-        public ActionResult Index()
+        public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
-            var consulta = db.Consulta.Include(c => c.Consultorio).Include(c => c.Especialidad).Include(c => c.Medico);
-            return View(consulta.ToList());
-        }
+            ViewBag.actual = dato;
+            ViewBag.Medico1 = string.IsNullOrEmpty(dato) ? "medico" : "";
+            ViewBag.Espe1 = dato == "Especialidad" ? "esp" : "Especialidad";
 
-        public ActionResult OrdenarConsulta(string criterio)
-        {
-            ViewBag.acrtual = criterio;
-            ViewBag.Medico = string.IsNullOrEmpty(criterio) ? "asc" : "";
-            ViewBag.Especialidad = criterio == "desc1" ? "desc2" : "desc2";
+            if (buscar != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                buscar = filtro;
+            }
 
+            ViewBag.filtroActual = buscar;
 
             var consulta = from co in db.Consulta
                            select co;
-
-            switch (criterio)
+            if (!string.IsNullOrEmpty(buscar))
             {
-                case "asc":
-                    consulta = consulta.OrderByDescending(co => co.Medico);
+                consulta = consulta.Where(co => co.Medico.nombre.Contains(buscar)
+               || co.Medico.nombre.Contains(buscar)
+               || co.Medico.p_Apellido.Contains(buscar)
+               || co.Medico.s_Apellido.Contains(buscar)
+               || co.Especialidad.descripcion.Contains(buscar)
+               || co.Consultorio.numero.Contains(buscar)
+               || co.precio.ToString().Contains(buscar));
+            }
+
+            switch (dato)
+            {
+                case "medico":
+                    consulta = consulta.OrderByDescending(co => co.Medico.nombre);
                     break;
-                case "desc1":
-                    consulta = consulta.OrderBy(co => co.Especialidad);
+                case "Especialidad":
+                    consulta = consulta.OrderBy(co => co.Especialidad.descripcion);
                     break;
-                case "desc2":
-                    consulta = consulta.OrderByDescending(co => co.Especialidad);
+                case "esp":
+                    consulta = consulta.OrderByDescending(co => co.Especialidad.descripcion);
                     break;
                 default:
-                    consulta = consulta.OrderBy(co => co.Medico);
+                    consulta = consulta.OrderBy(co => co.Medico.nombre);
                     break;
             }
-            return View(consulta.ToList());
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(consulta.ToPagedList(pageNumber, pageSize));
         }
 
 

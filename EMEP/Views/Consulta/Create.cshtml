@@ -5,23 +5,23 @@
     Layout = "~/Views/Shared/_LayoutAD.cshtml";
 }
 
-<h2>Nueva</h2>
+<br />
+<h2>Crear Consulta</h2>
+<br />
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Consulta</h4>
-        <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ID_MEDICO, "Médico", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-               @Html.DropDownListFor(model => model.ID_MEDICO,
-              (SelectList)ViewBag.listaMedicos,"Seleccione a un Medico",
-              htmlAttributes: new {@class="form-control"})
+                @Html.DropDownListFor(model => model.ID_MEDICO,
+              (SelectList)ViewBag.listaMedicos, "Seleccione a un Medico",
+              htmlAttributes: new { @class = "form-control" })
 
                 @Html.ValidationMessageFor(model => model.ID_MEDICO, "", new { @class = "text-danger" })
             </div>
@@ -53,7 +53,7 @@
               (SelectList)ViewBag.listaEspecialidad, "Seleccione a una Especialidad",
               htmlAttributes: new { @class = "form-control" })
 
-                
+
                 @Html.ValidationMessageFor(model => model.ID_ESPECIALIDAD, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -70,6 +70,6 @@
     <button type="button" class="btn btn-outline-success"
             onclick="location.href='@Url.Action("Index", "Consulta")'">
         Regresar
-    </button>  
+    </button>
 </div>
 

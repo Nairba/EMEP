@@ -15,7 +15,6 @@ namespace EMEP.Controllers
     {
         private EMEPEntities db = new EMEPEntities();
 
-        // GET: Especialidad
         public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
             if (TempData.ContainsKey("mensaje"))
@@ -24,7 +23,7 @@ namespace EMEP.Controllers
             }
 
             ViewBag.actual = dato;
-          
+
             ViewBag.Descripcion1 = dato == "Descripcion" ? "des" : "Descripcion";
 
             if (buscar != null)
@@ -49,7 +48,7 @@ namespace EMEP.Controllers
 
             switch (dato)
             {
-               
+
                 case "des":
                     especialidad = especialidad.OrderByDescending(es => es.descripcion);
                     break;
@@ -60,6 +59,7 @@ namespace EMEP.Controllers
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
+
             return View(especialidad.ToPagedList(pageNumber, pageSize));
         }
 
@@ -154,18 +154,18 @@ namespace EMEP.Controllers
             {
                 db.Entry(objEsp).State = EntityState.Modified;
                 db.SaveChanges();
-           
+
                 TempData["mensaje"] = "Especialidad actualizado satisfactoriamente!";
                 return RedirectToAction("Index");
             }
-            catch 
+            catch
             {
 
                 TempData["mensaje"] = "La Especilaidad no se logro actualizar";
                 return View();
             }
-          
-           
+
+
         }
 
         // GET: Especialidad/Delete/5
