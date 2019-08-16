@@ -12,19 +12,24 @@ namespace EMEP.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Cita
+    public partial class RegistrarCita
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RegistrarCita()
+        {
+            this.ListaCita = new HashSet<ListaCita>();
+        }
+    
         public int id { get; set; }
-        public string hora { get; set; }
-        public System.DateTime fecha { get; set; }
         public string ID_PACIENTE { get; set; }
-        public string descripcion { get; set; }
         public int ID_CONSULTA { get; set; }
-        public int estado { get; set; }
-        public string observaciones { get; set; }
         public int ID_HORARIO { get; set; }
+        public int disponible { get; set; }
+        public string descripcion { get; set; }
     
         public virtual Consulta Consulta { get; set; }
         public virtual Horario Horario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ListaCita> ListaCita { get; set; }
     }
 }
