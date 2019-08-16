@@ -9,13 +9,10 @@
     Layout = "~/Views/Shared/_LayoutAD.cshtml";
 }
 
-<h2>Especialidad</h2>
+<h2>Index</h2>
 
 <p>
-    <button type="button" class="btn btn-outline-info"
-            onclick="location.href='@Url.Action("Create", "Especialidad")'">
-        Nuevo
-    </button>
+    @Html.ActionLink("Create New", "Create")
 </p>
 
 @using (Html.BeginForm("Index", "Especialidad", FormMethod.Get))
@@ -23,34 +20,31 @@
     <p>
         Ingresar el dato: @Html.TextBox("buscar", ViewBag.filtroActual as string)
         <input type="submit" value="Buscar" />
-       
     </p>
 }
 
 
 
 <table class="table">
+    <tr>
+        <th>         
+            @Html.ActionLink("Descripción", "Index", new { dato = ViewBag.Descripcion1, filtro = ViewBag.filtroActual })
+        </th>
+        <th></th>
+    </tr>
 
-        <tr>
-            <th>
-                @Html.ActionLink("Descripción", "Index", new { dato = ViewBag.Descripcion1, filtro = ViewBag.filtroActual })
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
 
 </table>
 
@@ -58,13 +52,6 @@
 Pagina @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, dato = ViewBag.actual, filtro = ViewBag.filtroActual }))
-
-<div class="form-group">
-    <div>
-        <button type="button" class="btn btn-outline-success"
-                onclick="location.href='@Url.Action("Index", "Especialidad")'">
-            Regresar
-        </button>
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
-
