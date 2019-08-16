@@ -16,7 +16,7 @@ namespace EMEP.Controllers
     {
         private EMEPEntities db = new EMEPEntities();
 
-        // GET: Consulta
+        // GET: Consulta EMEP
         public ActionResult Index(string dato, string buscar, string filtro, int? page)
         {
             ViewBag.actual = dato;
