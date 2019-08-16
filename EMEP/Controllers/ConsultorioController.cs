@@ -83,7 +83,7 @@ namespace EMEP.Controllers
             return View("Details", consultorio);
         }
 
-        // GET: Consultorio/Create
+        // GET: Consultorio/Crear
         public ActionResult Create()
         {
             return View();
