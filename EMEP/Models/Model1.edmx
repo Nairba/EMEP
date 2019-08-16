@@ -15,6 +15,14 @@
           <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="ID_TIPO_USUARIO" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="AgendaCita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idHora" Type="int" Nullable="false" />
+          <Property Name="detalle" Type="text" Nullable="false" />
+        </EntityType>
         <EntityType Name="Alcohol">
           <Key>
             <PropertyRef Name="id" />
@@ -51,20 +59,6 @@
           <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="donde" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ID_EXPEDIENTE" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Cita">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="hora" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
-          <Property Name="ID_PACIENTE" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="descripcion" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ID_CONSULTA" Type="int" Nullable="false" />
-          <Property Name="estado" Type="int" Nullable="false" />
-          <Property Name="observaciones" Type="nvarchar" MaxLength="50" />
-          <Property Name="ID_HORARIO" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Compartir_Expediente">
           <Key>
@@ -165,7 +159,10 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="hora" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="am_pm" Type="nvarchar" MaxLength="50" />
+          <Property Name="am_pm" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dia" Type="date" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Lista_Actividad_Fisica">
           <Key>
@@ -202,6 +199,13 @@
           <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="ID_EXPEDIENTE" Type="int" />
           <Property Name="img" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ListaCita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRegistrarCita" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Medicamento">
           <Key>
@@ -285,6 +289,27 @@
           <Property Name="ID_PACIENTE_ASOCIADO" Type="int" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="RegistrarCita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PACIENTE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_CONSULTA" Type="int" Nullable="false" />
+          <Property Name="ID_HORARIO" Type="int" Nullable="false" />
+          <Property Name="disponible" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Tipo_Usuario">
           <Key>
             <PropertyRef Name="id" />
@@ -301,6 +326,18 @@
             </Principal>
             <Dependent Role="Administrador">
               <PropertyRef Name="ID_TIPO_USUARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AgendaCita_Horario">
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="AgendaCita" Type="Self.AgendaCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgendaCita">
+              <PropertyRef Name="idHora" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -325,30 +362,6 @@
             </Principal>
             <Dependent Role="Cirugia">
               <PropertyRef Name="ID_EXPEDIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cita_Consulta">
-          <End Role="Consulta" Type="Self.Consulta" Multiplicity="1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Consulta">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="ID_CONSULTA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cita_Horario">
-          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Horario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="ID_HORARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -532,6 +545,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ListaCita_RegistrarCita">
+          <End Role="RegistrarCita" Type="Self.RegistrarCita" Multiplicity="1" />
+          <End Role="ListaCita" Type="Self.ListaCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrarCita">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ListaCita">
+              <PropertyRef Name="idRegistrarCita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Medicamento_Expediente">
           <End Role="Expediente" Type="Self.Expediente" Multiplicity="1" />
           <End Role="Medicamento" Type="Self.Medicamento" Multiplicity="*" />
@@ -616,6 +641,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RegistrarCita_Consulta">
+          <End Role="Consulta" Type="Self.Consulta" Multiplicity="1" />
+          <End Role="RegistrarCita" Type="Self.RegistrarCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RegistrarCita">
+              <PropertyRef Name="ID_CONSULTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrarCita_Horario">
+          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
+          <End Role="RegistrarCita" Type="Self.RegistrarCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RegistrarCita">
+              <PropertyRef Name="ID_HORARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Usuario_Tipo_Usuario">
           <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
           <End Role="Medico" Type="Self.Medico" Multiplicity="*" />
@@ -630,11 +679,11 @@
         </Association>
         <EntityContainer Name="EMEPModelStoreContainer">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgendaCita" EntityType="Self.AgendaCita" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Alcohol" EntityType="Self.Alcohol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria_Alergia" EntityType="Self.Categoria_Alergia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cirugia" EntityType="Self.Cirugia" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compartir_Expediente" EntityType="Self.Compartir_Expediente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Consultorio" EntityType="Self.Consultorio" Schema="dbo" store:Type="Tables" />
@@ -649,6 +698,7 @@
           <EntitySet Name="Lista_Actividad_Fisica" EntityType="Self.Lista_Actividad_Fisica" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lista_Alergia" EntityType="Self.Lista_Alergia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Lista_Enfermedad" EntityType="Self.Lista_Enfermedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListaCita" EntityType="Self.ListaCita" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medicamento" EntityType="Self.Medicamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Medico" EntityType="Self.Medico" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Otra_Actividad" EntityType="Self.Otra_Actividad" Schema="dbo" store:Type="Tables" />
@@ -656,10 +706,16 @@
           <EntitySet Name="Otra_Enfermedad" EntityType="Self.Otra_Enfermedad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paciente_Paciente_Asociado" EntityType="Self.Paciente_Paciente_Asociado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrarCita" EntityType="Self.RegistrarCita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipo_Usuario" EntityType="Self.Tipo_Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Administrador_Tipo_Usuario" Association="Self.FK_Administrador_Tipo_Usuario">
             <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
             <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AgendaCita_Horario" Association="Self.FK_AgendaCita_Horario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="AgendaCita" EntitySet="AgendaCita" />
           </AssociationSet>
           <AssociationSet Name="FK_Alcohol_Expediente" Association="Self.FK_Alcohol_Expediente">
             <End Role="Expediente" EntitySet="Expediente" />
@@ -668,14 +724,6 @@
           <AssociationSet Name="FK_Cirugia_Expediente" Association="Self.FK_Cirugia_Expediente">
             <End Role="Expediente" EntitySet="Expediente" />
             <End Role="Cirugia" EntitySet="Cirugia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cita_Consulta" Association="Self.FK_Cita_Consulta">
-            <End Role="Consulta" EntitySet="Consulta" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cita_Horario" Association="Self.FK_Cita_Horario">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="Cita" EntitySet="Cita" />
           </AssociationSet>
           <AssociationSet Name="FK_Compartir_Expediente_Paciente" Association="Self.FK_Compartir_Expediente_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
@@ -737,6 +785,10 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Lista_Enfermedad" EntitySet="Lista_Enfermedad" />
           </AssociationSet>
+          <AssociationSet Name="FK_ListaCita_RegistrarCita" Association="Self.FK_ListaCita_RegistrarCita">
+            <End Role="RegistrarCita" EntitySet="RegistrarCita" />
+            <End Role="ListaCita" EntitySet="ListaCita" />
+          </AssociationSet>
           <AssociationSet Name="FK_Medicamento_Expediente" Association="Self.FK_Medicamento_Expediente">
             <End Role="Expediente" EntitySet="Expediente" />
             <End Role="Medicamento" EntitySet="Medicamento" />
@@ -764,6 +816,14 @@
           <AssociationSet Name="FK_Paciente_Tipo_Usuario" Association="Self.FK_Paciente_Tipo_Usuario">
             <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
             <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrarCita_Consulta" Association="Self.FK_RegistrarCita_Consulta">
+            <End Role="Consulta" EntitySet="Consulta" />
+            <End Role="RegistrarCita" EntitySet="RegistrarCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrarCita_Horario" Association="Self.FK_RegistrarCita_Horario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="RegistrarCita" EntitySet="RegistrarCita" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Tipo_Usuario" Association="Self.FK_Usuario_Tipo_Usuario">
             <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
@@ -826,22 +886,6 @@
           <Property Name="ID_EXPEDIENTE" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Expediente" Relationship="Self.FK_Cirugia_Expediente" FromRole="Cirugia" ToRole="Expediente" />
         </EntityType>
-        <EntityType Name="Cita">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="hora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ID_PACIENTE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ID_CONSULTA" Type="Int32" Nullable="false" />
-          <Property Name="estado" Type="Int32" Nullable="false" />
-          <Property Name="observaciones" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ID_HORARIO" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Consulta" Relationship="Self.FK_Cita_Consulta" FromRole="Cita" ToRole="Consulta" />
-          <NavigationProperty Name="Horario" Relationship="Self.FK_Cita_Horario" FromRole="Cita" ToRole="Horario" />
-        </EntityType>
         <EntityType Name="Compartir_Expediente">
           <Key>
             <PropertyRef Name="id" />
@@ -862,10 +906,10 @@
           <Property Name="ID_CONSULTORIO" Type="Int32" Nullable="false" />
           <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ID_ESPECIALIDAD" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Consulta" FromRole="Consulta" ToRole="Cita" />
           <NavigationProperty Name="Consultorio" Relationship="Self.FK_Consulta_Consultorio" FromRole="Consulta" ToRole="Consultorio" />
           <NavigationProperty Name="Especialidad" Relationship="Self.FK_Consulta_Especialidad" FromRole="Consulta" ToRole="Especialidad" />
           <NavigationProperty Name="Medico" Relationship="Self.FK_Consulta_Medico" FromRole="Consulta" ToRole="Medico" />
+          <NavigationProperty Name="RegistrarCita" Relationship="EMEPModel.FK_RegistrarCita_Consulta" FromRole="Consulta" ToRole="RegistrarCita" />
         </EntityType>
         <EntityType Name="Consultorio">
           <Key>
@@ -968,8 +1012,12 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="hora" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="am_pm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Horario" FromRole="Horario" ToRole="Cita" />
+          <Property Name="am_pm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AgendaCita" Relationship="EMEPModel.FK_AgendaCita_Horario" FromRole="Horario" ToRole="AgendaCita" />
+          <NavigationProperty Name="RegistrarCita" Relationship="EMEPModel.FK_RegistrarCita_Horario" FromRole="Horario" ToRole="RegistrarCita" />
         </EntityType>
         <EntityType Name="Lista_Actividad_Fisica">
           <Key>
@@ -1174,30 +1222,6 @@
             </Principal>
             <Dependent Role="Cirugia">
               <PropertyRef Name="ID_EXPEDIENTE" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cita_Consulta">
-          <End Role="Consulta" Type="Self.Consulta" Multiplicity="1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Consulta">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="ID_CONSULTA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cita_Horario">
-          <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
-          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Horario">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Cita">
-              <PropertyRef Name="ID_HORARIO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1423,7 +1447,6 @@
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Categoria_Alergia" EntityType="Self.Categoria_Alergia" />
           <EntitySet Name="Cirugia" EntityType="Self.Cirugia" />
-          <EntitySet Name="Cita" EntityType="Self.Cita" />
           <EntitySet Name="Compartir_Expediente" EntityType="Self.Compartir_Expediente" />
           <EntitySet Name="Consulta" EntityType="Self.Consulta" />
           <EntitySet Name="Consultorio" EntityType="Self.Consultorio" />
@@ -1465,14 +1488,6 @@
           <AssociationSet Name="FK_Cirugia_Expediente" Association="Self.FK_Cirugia_Expediente">
             <End Role="Expediente" EntitySet="Expediente" />
             <End Role="Cirugia" EntitySet="Cirugia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cita_Consulta" Association="Self.FK_Cita_Consulta">
-            <End Role="Consulta" EntitySet="Consulta" />
-            <End Role="Cita" EntitySet="Cita" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cita_Horario" Association="Self.FK_Cita_Horario">
-            <End Role="Horario" EntitySet="Horario" />
-            <End Role="Cita" EntitySet="Cita" />
           </AssociationSet>
           <AssociationSet Name="FK_Compartir_Expediente_Paciente" Association="Self.FK_Compartir_Expediente_Paciente">
             <End Role="Paciente" EntitySet="Paciente" />
@@ -1558,6 +1573,26 @@
             <End Role="Expediente" EntitySet="Expediente" />
             <End Role="Otra_Enfermedad" EntitySet="Otra_Enfermedad" />
           </AssociationSet>
+          <EntitySet Name="AgendaCita" EntityType="EMEPModel.AgendaCita" />
+          <EntitySet Name="ListaCita" EntityType="EMEPModel.ListaCita" />
+          <EntitySet Name="RegistrarCita" EntityType="EMEPModel.RegistrarCita" />
+          <EntitySet Name="sysdiagrams" EntityType="EMEPModel.sysdiagrams" />
+          <AssociationSet Name="FK_AgendaCita_Horario" Association="EMEPModel.FK_AgendaCita_Horario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="AgendaCita" EntitySet="AgendaCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrarCita_Consulta" Association="EMEPModel.FK_RegistrarCita_Consulta">
+            <End Role="Consulta" EntitySet="Consulta" />
+            <End Role="RegistrarCita" EntitySet="RegistrarCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrarCita_Horario" Association="EMEPModel.FK_RegistrarCita_Horario">
+            <End Role="Horario" EntitySet="Horario" />
+            <End Role="RegistrarCita" EntitySet="RegistrarCita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ListaCita_RegistrarCita" Association="EMEPModel.FK_ListaCita_RegistrarCita">
+            <End Role="RegistrarCita" EntitySet="RegistrarCita" />
+            <End Role="ListaCita" EntitySet="ListaCita" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Otra_Actividad_Expediente">
           <End Type="EMEPModel.Expediente" Role="Expediente" Multiplicity="0..1" />
@@ -1592,6 +1627,95 @@
             </Principal>
             <Dependent Role="Otra_Enfermedad">
               <PropertyRef Name="ID_EXPEDIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AgendaCita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idHora" Type="Int32" Nullable="false" />
+          <Property Name="detalle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Horario" Relationship="EMEPModel.FK_AgendaCita_Horario" FromRole="AgendaCita" ToRole="Horario" />
+        </EntityType>
+        <EntityType Name="ListaCita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRegistrarCita" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RegistrarCita" Relationship="EMEPModel.FK_ListaCita_RegistrarCita" FromRole="ListaCita" ToRole="RegistrarCita" />
+        </EntityType>
+        <EntityType Name="RegistrarCita">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PACIENTE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_CONSULTA" Type="Int32" Nullable="false" />
+          <Property Name="ID_HORARIO" Type="Int32" Nullable="false" />
+          <Property Name="disponible" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Consulta" Relationship="EMEPModel.FK_RegistrarCita_Consulta" FromRole="RegistrarCita" ToRole="Consulta" />
+          <NavigationProperty Name="Horario" Relationship="EMEPModel.FK_RegistrarCita_Horario" FromRole="RegistrarCita" ToRole="Horario" />
+          <NavigationProperty Name="ListaCita" Relationship="EMEPModel.FK_ListaCita_RegistrarCita" FromRole="RegistrarCita" ToRole="ListaCita" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_AgendaCita_Horario">
+          <End Type="EMEPModel.Horario" Role="Horario" Multiplicity="1" />
+          <End Type="EMEPModel.AgendaCita" Role="AgendaCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="AgendaCita">
+              <PropertyRef Name="idHora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrarCita_Consulta">
+          <End Type="EMEPModel.Consulta" Role="Consulta" Multiplicity="1" />
+          <End Type="EMEPModel.RegistrarCita" Role="RegistrarCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consulta">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RegistrarCita">
+              <PropertyRef Name="ID_CONSULTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrarCita_Horario">
+          <End Type="EMEPModel.Horario" Role="Horario" Multiplicity="1" />
+          <End Type="EMEPModel.RegistrarCita" Role="RegistrarCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Horario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RegistrarCita">
+              <PropertyRef Name="ID_HORARIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ListaCita_RegistrarCita">
+          <End Type="EMEPModel.RegistrarCita" Role="RegistrarCita" Multiplicity="1" />
+          <End Type="EMEPModel.ListaCita" Role="ListaCita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrarCita">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ListaCita">
+              <PropertyRef Name="idRegistrarCita" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1650,21 +1774,6 @@
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="donde" ColumnName="donde" />
                 <ScalarProperty Name="ID_EXPEDIENTE" ColumnName="ID_EXPEDIENTE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cita">
-            <EntityTypeMapping TypeName="EMEPModel.Cita">
-              <MappingFragment StoreEntitySet="Cita">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="ID_CONSULTA" ColumnName="ID_CONSULTA" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
-                <ScalarProperty Name="ID_HORARIO" ColumnName="ID_HORARIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1774,6 +1883,9 @@
           <EntitySetMapping Name="Horario">
             <EntityTypeMapping TypeName="EMEPModel.Horario">
               <MappingFragment StoreEntitySet="Horario">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="dia" ColumnName="dia" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="am_pm" ColumnName="am_pm" />
@@ -1913,6 +2025,46 @@
               <MappingFragment StoreEntitySet="Tipo_Usuario">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgendaCita">
+            <EntityTypeMapping TypeName="EMEPModel.AgendaCita">
+              <MappingFragment StoreEntitySet="AgendaCita">
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+                <ScalarProperty Name="idHora" ColumnName="idHora" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListaCita">
+            <EntityTypeMapping TypeName="EMEPModel.ListaCita">
+              <MappingFragment StoreEntitySet="ListaCita">
+                <ScalarProperty Name="idRegistrarCita" ColumnName="idRegistrarCita" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrarCita">
+            <EntityTypeMapping TypeName="EMEPModel.RegistrarCita">
+              <MappingFragment StoreEntitySet="RegistrarCita">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
+                <ScalarProperty Name="ID_HORARIO" ColumnName="ID_HORARIO" />
+                <ScalarProperty Name="ID_CONSULTA" ColumnName="ID_CONSULTA" />
+                <ScalarProperty Name="ID_PACIENTE" ColumnName="ID_PACIENTE" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="EMEPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
