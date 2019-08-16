@@ -89,7 +89,7 @@ namespace EMEP.Controllers
             return View();
         }
 
-        // POST: Consultorio/Create
+        // POST: Consultorio/Crear
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
